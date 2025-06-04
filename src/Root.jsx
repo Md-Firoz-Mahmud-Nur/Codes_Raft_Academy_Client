@@ -7,7 +7,7 @@ import { AuthContext } from "./AuthProvider";
 import SignModal from "./Pages/Login/SignModal";
 
 const Root = () => {
-  const {user, isModalOpen } = useContext(AuthContext);
+  const { user, isModalOpen } = useContext(AuthContext);
 
   return (
     <div>

@@ -79,9 +79,8 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      // setUser(currentUser);
-      // console.log("effeect", currentUser);
-
+      setLoading(true);
+      console.log("currentUser", currentUser);
       if (currentUser) {
         setUser(currentUser);
         // console.log("effeect", currentUser);
@@ -119,9 +118,6 @@ const AuthProvider = ({ children }) => {
     setIsModalOpen,
     passwordResetEmail,
     sendEmailVerification,
-    // archiveData,
-    // setArchiveData,
-    // updateArchiveData,
   };
 
   return (

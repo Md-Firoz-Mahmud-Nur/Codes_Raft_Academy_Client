@@ -2,9 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/CodeRaft-Logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../AuthProvider";
+import Loader from "./Loader";
 
 const Navbar = () => {
-  const { logout, user, setIsModalOpen } = useContext(AuthContext);
+  const { logout, user, setIsModalOpen, loading } = useContext(AuthContext);
+  console.log(loading);
   const links = [
     {
       to: "/",
@@ -45,7 +47,7 @@ const Navbar = () => {
               className="menu dropdown-content menu-sm rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               {links.map((link) => (
-                <li>
+                <li key={link.name}>
                   <NavLink
                     className={({ isActive }) =>
                       `block rounded-md p-2 text-lg ${
@@ -72,7 +74,7 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:ml-20 lg:flex">
           <ul className="menu menu-horizontal rounded-2xl bg-transparent px-1">
             {links.map((link) => (
-              <li>
+              <li key={link.name}>
                 <NavLink
                   className={({ isActive }) =>
                     `block rounded-md p-2 text-lg ${
@@ -90,7 +92,9 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end gap-4">
-          {user ? (
+          {loading ? (
+            <Loader></Loader>
+          ) : user ? (
             <>
               <div
                 className="tooltip tooltip-bottom"
