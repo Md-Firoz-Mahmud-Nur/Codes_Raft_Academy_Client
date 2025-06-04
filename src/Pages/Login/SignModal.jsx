@@ -1,12 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { FcGoogle } from "react-icons/fc";
-import { FaEye, FaEyeSlash, FaGithub } from "react-icons/fa";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { ImCross } from "react-icons/im";
-import { IoMdArrowBack } from "react-icons/io";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../AuthProvider";
-import { uploadImage } from "../../Hooks/imageUpload";
+import { useContext, useEffect, useState } from "react";
+import { FcGoogle } from "react-icons/fc";
+import { FaEye, FaEyeSlash} from "react-icons/fa";
+import { ImCross } from "react-icons/im";
+import { IoMdArrowBack } from "react-icons/io";
 
 const SignModal = () => {
   const axiosPublic = useAxiosPublic();
@@ -18,9 +17,9 @@ const SignModal = () => {
 
   const {
     createUser,
-    updateuserprofile,
+    updateUserprofile,
     signInUser,
-    googleSigin,
+    googleSigIn,
     isModalOpen,
     setIsModalOpen,
     passwordResetEmail,
@@ -39,7 +38,8 @@ const SignModal = () => {
 
   const handleGoogleSignIn = () => {
     setLoadingGoogle(true);
-    googleSigin().then(async (result) => {
+    googleSigIn().then(async (result) => {
+      console.log(result.user);
       const userInfo = {
         name: result.user?.displayName,
         email: result.user?.email,
@@ -99,7 +99,7 @@ const SignModal = () => {
     e.preventDefault();
     setLoading(true);
     const name = e.target.name.value;
-    const photo = e.target.photo.files[0];
+    // const photo = e.target.photo.files[0];
     const email = e.target.email.value;
     const password = e.target.password.value;
 
@@ -115,10 +115,8 @@ const SignModal = () => {
     }
 
     try {
-      const photoUrl = photo ? await uploadImage(photo) : "";
       const newUser = {
         name,
-        photoUrl,
         email,
         password,
         role: "member",
@@ -147,7 +145,7 @@ const SignModal = () => {
         throw new Error("Failed to save user to database");
       }
 
-      await updateuserprofile(name, photoUrl);
+      await updateUserprofile(name, photoUrl);
       await axiosPublic.put(`/users/${result.user?.email}`, userLastLoginTime);
 
       await sendEmailVerification(result.user).then(() =>
@@ -368,20 +366,6 @@ const SignModal = () => {
                         required
                       />
                     </div>
-
-                    <div className="mb-4 pt-1">
-                      <label className="block text-sm font-medium text-gray-700 dark:text-white">
-                        Upload Your Photo
-                      </label>
-                      <input
-                        type="file"
-                        name="photo"
-                        className="mt-1 block w-full"
-                        accept="image/*"
-                        required
-                      />
-                    </div>
-
                     <div className="mb-4 pt-1">
                       <label className="block text-sm font-medium text-gray-700 dark:text-white">
                         Email
@@ -394,7 +378,6 @@ const SignModal = () => {
                         required
                       />
                     </div>
-
                     <div className="mb-4 pt-1">
                       <label className="block text-sm font-medium text-gray-700 dark:text-white">
                         Password
@@ -420,7 +403,7 @@ const SignModal = () => {
                     </div>
 
                     <p className="my-2">
-                      Have An Account?{" "}
+                      Have An Account?
                       <span
                         className="text-blue-500"
                         onClick={toggleSignUpMode}

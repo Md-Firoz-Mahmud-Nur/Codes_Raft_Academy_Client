@@ -5,57 +5,20 @@ import { AuthContext } from "../AuthProvider";
 
 const Navbar = () => {
   const { logout, user, setIsModalOpen } = useContext(AuthContext);
-
-  const signOut = () => {
-    console.log("signOut hit");
-  };
-  const links = (
-    <>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            `block rounded-md p-2 text-lg ${
-              isActive
-                ? "border-[#0080ff] border-b-2 font-semibold text-black"
-                : "hover:text-white"
-            }`
-          }
-          to="/"
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            `block rounded-md p-2 text-lg ${
-              isActive
-                ? "border-[#0080ff] border-b-2 font-semibold text-black"
-                : "hover:text-white"
-            }`
-          }
-          to="/classes"
-        >
-          Classes
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            `block rounded-md p-2 text-lg ${
-              isActive
-                ? "border-[#0080ff] border-b-2 font-semibold text-black"
-                : "hover:text-white"
-            }`
-          }
-          to="/profile"
-        >
-          Profile
-        </NavLink>
-      </li>
-
-    </>
-  );
+  const links = [
+    {
+      to: "/",
+      name: "Home",
+    },
+    {
+      to: "/classes",
+      name: "Classes",
+    },
+    {
+      to: "/profile",
+      name: "Profile",
+    },
+  ];
   return (
     <div className="z-50 border-b bg-[#00000042]">
       <div className="navbar sticky top-0 container mx-auto">
@@ -81,7 +44,22 @@ const Navbar = () => {
               tabIndex={0}
               className="menu dropdown-content menu-sm rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
-              {links}
+              {links.map((link) => (
+                <li>
+                  <NavLink
+                    className={({ isActive }) =>
+                      `block rounded-md p-2 text-lg ${
+                        isActive
+                          ? "border-b-2 border-[#0080ff] font-semibold text-black"
+                          : "hover:text-white"
+                      }`
+                    }
+                    to={link.to}
+                  >
+                    {link.name}
+                  </NavLink>
+                </li>
+              ))}
             </ul>
           </div>
           <Link
@@ -93,7 +71,22 @@ const Navbar = () => {
         </div>
         <div className="navbar-center hidden lg:ml-20 lg:flex">
           <ul className="menu menu-horizontal rounded-2xl bg-transparent px-1">
-            {links}
+            {links.map((link) => (
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    `block rounded-md p-2 text-lg ${
+                      isActive
+                        ? "border-b-2 border-[#0080ff] font-semibold text-black"
+                        : "hover:text-white"
+                    }`
+                  }
+                  to={link.to}
+                >
+                  {link.name}
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </div>
         <div className="navbar-end gap-4">
@@ -105,7 +98,7 @@ const Navbar = () => {
                   user.displayName ? user.displayName : "user name not found"
                 }
               >
-                <div className="mr-2 size-10 rounded-full border-2 border-amber-500">
+                <div className="mr-2 size-10 rounded-full border-2 border-black">
                   <img
                     className="h-full w-full rounded-full object-cover"
                     alt=""
@@ -114,9 +107,11 @@ const Navbar = () => {
                 </div>
               </div>
               <Link
-                onClick={signOut}
+                onClick={() => {
+                  logout();
+                }}
                 to="/"
-                className="btn btn-outline border-2 bg-transparent text-xl"
+                className="btn btn-outline border-2 bg-transparent text-xl hover:border-black"
               >
                 Logout
               </Link>

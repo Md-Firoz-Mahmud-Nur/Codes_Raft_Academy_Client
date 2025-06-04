@@ -21,6 +21,8 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const axiosPublic = useAxiosPublic();
+
   // const [archiveData, setArchiveData] = useState([]);
 
   // const updateArchiveData = (newData) => {
@@ -28,7 +30,7 @@ const AuthProvider = ({ children }) => {
   //   console.log("Updated archiveData:", newData);
   // };
 
-  const googleSigin = () => {
+  const googleSigIn = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
@@ -38,7 +40,7 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const updateuserprofile = (name, photo) => {
+  const updateUserprofile = (name, photo) => {
     setLoading(true);
 
     return updateProfile(auth.currentUser, {
@@ -85,7 +87,7 @@ const AuthProvider = ({ children }) => {
         // console.log("effeect", currentUser);
         const userInfo = { email: currentUser.email };
         // console.log(userInfo);
-        useAxiosPublic.post("/jwt", userInfo).then((res) => {
+        axiosPublic.post("/jwt", userInfo).then((res) => {
           // console.log(res.data.token);
           if (res.data.token) {
             localStorage.setItem("access-token", res.data.token);
@@ -110,8 +112,8 @@ const AuthProvider = ({ children }) => {
     createUser,
     signInUser,
     logout,
-    updateuserprofile,
-    googleSigin,
+    updateUserprofile,
+    googleSigIn,
     updateUser,
     isModalOpen,
     setIsModalOpen,
