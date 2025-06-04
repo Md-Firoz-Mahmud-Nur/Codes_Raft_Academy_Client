@@ -1,8 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/CodeRaft-Logo.png";
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider";
 
 const Navbar = () => {
-  const user = false;
+  const { logout, user, setIsModalOpen } = useContext(AuthContext);
+
   const signOut = () => {
     console.log("signOut hit");
   };
@@ -120,7 +123,7 @@ const Navbar = () => {
             </>
           ) : (
             <Link
-              to="/login"
+              onClick={() => setIsModalOpen(true)}
               className="btn btn-outline border-2 bg-transparent text-xl hover:border-black"
             >
               Login

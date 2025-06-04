@@ -1,87 +1,92 @@
-import React from "react";
-
 const Footer = () => {
   return (
-    <div class="bg-[#3b3b3b59] text-white">
-      <footer class="container mx-auto grid grid-cols-1 gap-8 px-3 py-12 text-sm md:grid-cols-4">
+    <div className="bg-[#3b3b3b59] text-white">
+      <footer className="container mx-auto grid grid-cols-1 gap-8 px-3 py-12 text-sm md:grid-cols-4">
         <nav>
-          <h6 class="mb-4 text-xl font-semibold">Our Services</h6>
+          <h6 className="mb-4 text-xl font-semibold">Our Services</h6>
           <ul>
             <a href="/web-development">
-              <li class="mb-2">
-                <p class="hover:text-primary transition">Web Development</p>
+              <li className="mb-2">
+                <p className="hover:text-primary transition">Web Development</p>
               </li>
             </a>
             <a href="/app-development">
-              <li class="mb-2">
-                <p class="hover:text-primary transition">App Development</p>
+              <li className="mb-2">
+                <p className="hover:text-primary transition">App Development</p>
               </li>
             </a>
             <a href="/software-development">
-              <li class="mb-2">
-                <p class="hover:text-primary transition">Software Solutions</p>
+              <li className="mb-2">
+                <p className="hover:text-primary transition">
+                  Software Solutions
+                </p>
               </li>
             </a>
             <a href="/graphics-designing">
-              <li class="mb-2">
-                <p class="hover:text-primary transition">Graphics Designing</p>
+              <li className="mb-2">
+                <p className="hover:text-primary transition">
+                  Graphics Designing
+                </p>
               </li>
             </a>
           </ul>
         </nav>
         <nav>
-          <h6 class="mb-4 text-xl font-semibold">Company</h6>
+          <h6 className="mb-4 text-xl font-semibold">Company</h6>
           <ul>
-            <li class="mb-2">
-              <a href="/about" class="hover:text-primary transition">
+            <li className="mb-2">
+              <a href="/about" className="hover:text-primary transition">
                 About Us
               </a>
             </li>
-            <li class="mb-2">
-              <a href="/contact" class="hover:text-primary transition">
+            <li className="mb-2">
+              <a href="/contact" className="hover:text-primary transition">
                 Contact
               </a>
             </li>
-            <li class="mb-2">
-              <a href="/careers" class="hover:text-primary transition">
+            <li className="mb-2">
+              <a href="/careers" className="hover:text-primary transition">
                 Careers
               </a>
             </li>
-            <li class="mb-2">
-              <a href="#" class="hover:text-primary transition">
+            <li className="mb-2">
+              <a href="#" className="hover:text-primary transition">
                 Press Kit
               </a>
             </li>
           </ul>
         </nav>
         <nav>
-          <h6 class="mb-4 text-xl font-semibold">Legal</h6>
+          <h6 className="mb-4 text-xl font-semibold">Legal</h6>
           <ul>
-            <li class="mb-2">
-              <a href="#" class="hover:text-primary transition">
+            <li className="mb-2">
+              <a href="#" className="hover:text-primary transition">
                 Terms of Use
               </a>
             </li>
-            <li class="mb-2">
-              <a href="#" class="hover:text-primary transition">
+            <li className="mb-2">
+              <a href="#" className="hover:text-primary transition">
                 Privacy Policy
               </a>
             </li>
-            <li class="mb-2">
-              <a href="#" class="hover:text-primary transition">
+            <li className="mb-2">
+              <a href="#" className="hover:text-primary transition">
                 Cookie Policy
               </a>
             </li>
           </ul>
         </nav>
-        <nav class="md:place-self-center md:justify-self-end">
-          <h6 class="mb-4 text-xl font-semibold">Follow Us</h6>
-          <div class="flex space-x-4">
-            <a href="https://twitter.com" class="hover:text-primary transition">
+        <nav className="md:place-self-center md:justify-self-end">
+          <h6 className="mb-4 text-xl font-semibold">Follow Us</h6>
+          <div className="flex space-x-4">
+            <a
+              href="https://twitter.com"
+              className="hover:text-primary transition"
+            >
               <svg
                 stroke="currentColor"
                 fill="currentColor"
-                stroke-width="0"
+                strokeWidth="0"
                 viewBox="0 0 512 512"
                 height="20"
                 width="20"
@@ -92,12 +97,12 @@ const Footer = () => {
             </a>
             <a
               href="https://facebook.com"
-              class="hover:text-primary transition"
+              className="hover:text-primary transition"
             >
               <svg
                 stroke="currentColor"
                 fill="currentColor"
-                stroke-width="0"
+                strokeWidth="0"
                 viewBox="0 0 320 512"
                 height="20"
                 width="20"
@@ -106,11 +111,14 @@ const Footer = () => {
                 <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path>
               </svg>
             </a>
-            <a href="https://youtube.com" class="hover:text-primary transition">
+            <a
+              href="https://youtube.com"
+              className="hover:text-primary transition"
+            >
               <svg
                 stroke="currentColor"
                 fill="currentColor"
-                stroke-width="0"
+                strokeWidth="0"
                 viewBox="0 0 576 512"
                 height="20"
                 width="20"
@@ -121,12 +129,12 @@ const Footer = () => {
             </a>
             <a
               href="https://instagram.com"
-              class="hover:text-primary transition"
+              className="hover:text-primary transition"
             >
               <svg
                 stroke="currentColor"
                 fill="currentColor"
-                stroke-width="0"
+                strokeWidth="0"
                 viewBox="0 0 448 512"
                 height="20"
                 width="20"
@@ -138,9 +146,9 @@ const Footer = () => {
           </div>
         </nav>
       </footer>
-      <footer class="bg-gray-800 py-6">
-        <div class="container mx-auto flex flex-col items-center justify-between text-xs text-gray-400 md:flex-row">
-          <p class="mb-4 md:mb-0">© 2024 CodeRaft. All Rights Reserved.</p>
+      <footer className="bg-gray-800 py-6">
+        <div className="container mx-auto flex flex-col items-center justify-between text-xs text-gray-400 md:flex-row">
+          <p className="mb-4 md:mb-0">© 2024 CodeRaft. All Rights Reserved.</p>
           <p>Providing reliable tech solutions since 2024</p>
         </div>
       </footer>
