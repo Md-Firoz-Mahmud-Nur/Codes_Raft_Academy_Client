@@ -1,6 +1,4 @@
-//my edited private route
-import { createContext, useEffect, useState } from "react";
-
+import { useEffect, useState } from "react";
 import auth from "./Firebase.config";
 import {
   createUserWithEmailAndPassword,
@@ -14,7 +12,7 @@ import {
 } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import useAxiosPublic from "./Hooks/useAxiosPublic";
-export const AuthContext = createContext(null);
+import AuthContext from "./AuthContext";
 
 const AuthProvider = ({ children }) => {
   const googleProvider = new GoogleAuthProvider();
@@ -36,16 +34,15 @@ const AuthProvider = ({ children }) => {
   };
 
   const createUser = (email, password) => {
+    console.log("createUserFrom AuthProvider", email,password);
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const updateUserprofile = (name, photo) => {
+  const updateUserProfileName = (name) => {
     setLoading(true);
-
     return updateProfile(auth.currentUser, {
       displayName: name,
-      photoURL: photo,
     })
       .then(async () => {
         setLoading(false);
@@ -83,7 +80,7 @@ const AuthProvider = ({ children }) => {
       console.log("currentUser", currentUser);
       if (currentUser) {
         setUser(currentUser);
-        // console.log("effeect", currentUser);
+        // console.log("effect", currentUser);
         const userInfo = { email: currentUser.email };
         // console.log(userInfo);
         axiosPublic.post("/jwt", userInfo).then((res) => {
@@ -111,7 +108,7 @@ const AuthProvider = ({ children }) => {
     createUser,
     signInUser,
     logout,
-    updateUserprofile,
+    updateUserProfileName,
     googleSigIn,
     updateUser,
     isModalOpen,

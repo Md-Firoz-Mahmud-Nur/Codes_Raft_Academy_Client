@@ -1,9 +1,9 @@
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import toast from "react-hot-toast";
-import { AuthContext } from "../../AuthProvider";
+import AuthContext from "../../AuthContext";
 import { useContext, useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { FaEye, FaEyeSlash} from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { IoMdArrowBack } from "react-icons/io";
 
@@ -17,7 +17,7 @@ const SignModal = () => {
 
   const {
     createUser,
-    updateUserprofile,
+    updateUserProfileName,
     signInUser,
     googleSigIn,
     isModalOpen,
@@ -46,12 +46,13 @@ const SignModal = () => {
         photoUrl: result.user?.photoURL,
         role: "member",
         userType: "normal",
+        // add Account creation Time
       };
       await axiosPublic.post("/users", userInfo).then(() => {});
 
       const userLastLoinTime = {
         lastSignInTime: result.user?.metadata?.lastSignInTime,
-        lastLoginAt: result.user?.metadata?.lastLoginAt,
+        // lastSignInTimeNotUseOnlyForDatabase: result.user?.metadata?.lastLoginAt,
       };
 
       await axiosPublic
@@ -99,7 +100,6 @@ const SignModal = () => {
     e.preventDefault();
     setLoading(true);
     const name = e.target.name.value;
-    // const photo = e.target.photo.files[0];
     const email = e.target.email.value;
     const password = e.target.password.value;
 
@@ -121,11 +121,15 @@ const SignModal = () => {
         password,
         role: "member",
         userType: "normal",
+        // add account creation time
       };
 
-      console.log(newUser);
+      console.log("newUser", newUser);
 
       const result = await createUser(email, password);
+
+      console.log(result);
+
       const userLastLoginTime = {
         lastSignInTime: result.user?.metadata?.lastSignInTime,
         lastLoginAt: result.user?.metadata?.lastLoginAt,
@@ -133,19 +137,22 @@ const SignModal = () => {
 
       console.log("userLastLoginTime", userLastLoginTime);
 
-      const response = await fetch(`${import.meta.env.VITE_URL}users`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_SERVER}/users`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUser),
         },
-        body: JSON.stringify(newUser),
-      });
+      );
 
       if (!response.ok) {
         throw new Error("Failed to save user to database");
       }
 
-      await updateUserprofile(name, photoUrl);
+      await updateUserProfileName(name);
       await axiosPublic.put(`/users/${result.user?.email}`, userLastLoginTime);
 
       await sendEmailVerification(result.user).then(() =>

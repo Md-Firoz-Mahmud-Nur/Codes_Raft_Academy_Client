@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/CodeRaft-Logo.png";
 import { useContext } from "react";
-import { AuthContext } from "../AuthProvider";
+import AuthContext from "../AuthContext";
 import Loader from "./Loader";
 
 const Navbar = () => {
@@ -97,28 +97,48 @@ const Navbar = () => {
           ) : user ? (
             <>
               <div
-                className="tooltip tooltip-bottom"
+                className="tooltip tooltip-left dropdown dropdown-end"
                 data-tip={
                   user.displayName ? user.displayName : "user name not found"
                 }
               >
-                <div className="mr-2 size-10 rounded-full border-2 border-black">
+                <div
+                  role="button"
+                  tabIndex={0}
+                  className="mr-2 size-10 rounded-full border-2 border-black"
+                >
                   <img
                     className="h-full w-full rounded-full object-cover"
                     alt=""
                     src={user.photoURL}
                   />
                 </div>
+                <ul
+                  className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 gap-4 p-2 shadow-sm"
+                  tabIndex={0}
+                >
+                  <li>
+                    <Link
+                      to="/profile"
+                      onClick={() => document.activeElement.blur()}
+                      className="btn btn-outline border-2 bg-transparent hover:border-black"
+                    >
+                      Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      onClick={() => {
+                        logout();
+                      }}
+                      to="/"
+                      className="btn btn-outline border-2 bg-transparent hover:border-black"
+                    >
+                      Logout
+                    </Link>
+                  </li>
+                </ul>
               </div>
-              <Link
-                onClick={() => {
-                  logout();
-                }}
-                to="/"
-                className="btn btn-outline border-2 bg-transparent text-xl hover:border-black"
-              >
-                Logout
-              </Link>
             </>
           ) : (
             <Link

@@ -3,7 +3,7 @@ import "./App.css";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import { useContext } from "react";
-import { AuthContext } from "./AuthProvider";
+import AuthContext from "./AuthContext";
 import SignModal from "./Pages/Login/SignModal";
 
 const Root = () => {
