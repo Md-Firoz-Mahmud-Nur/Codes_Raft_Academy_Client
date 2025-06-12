@@ -1,4 +1,5 @@
 import React, { forwardRef, useImperativeHandle } from "react";
+import Swal from "sweetalert2";
 
 const EnrollModal = forwardRef((props, ref) => {
   const modalRef = React.useRef(null);
@@ -8,8 +9,94 @@ const EnrollModal = forwardRef((props, ref) => {
     closeModal: () => modalRef.current?.close(),
   }));
 
-  const handleFormSubmit = () => {
+  const paymentDetailsMap = {
+    islami: {
+      info: "Send 5000 BDT to Islami Bank A/C: 1234567890123",
+    },
+    dutchbangla: {
+      info: "Send 5000 BDT to Dutch Bangla Bank A/C: 10123456789",
+    },
+    bkash: {
+      info: "Send 5000 BDT to bKash: 017XXXXXXXX",
+    },
+    rocket: {
+      info: "Send 5000 BDT to Rocket: 018XXXXXXXX",
+    },
+    nogod: {
+      info: "Send 5000 BDT to Nagad: 019XXXXXXXX",
+    },
+  };
+
+  const handleFormSubmit = (event) => {
     console.log("form submit hit");
+
+    event.preventDefault();
+    const form = event.target;
+
+    console.log("form", form);
+
+    fetch(form.action, {
+      method: form.method,
+      body: new FormData(form),
+      headers: {
+        Accept: "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          Swal.fire({
+            icon: "success",
+            title: "Enrollment Successful!",
+            text: "We have received your information. We’ll contact you soon!",
+          });
+          form.reset();
+          document.getElementById("paymentInfo").classList.add("hidden");
+          document.getElementById("transactionDetails").classList.add("hidden");
+          closeModal();
+        } else {
+          throw new Error("Submission failed");
+        }
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong. Please try again.",
+        });
+      });
+
+    return false;
+  };
+
+  const showPaymentDetails = () => {
+    const method = document.getElementById("paymentMethod").value;
+    const paymentInfo = document.getElementById("paymentInfo");
+    const transactionDiv = document.getElementById("transactionDetails");
+
+    if (method && paymentDetailsMap[method]) {
+      paymentInfo.textContent = paymentDetailsMap[method].info;
+      paymentInfo.classList.remove("hidden");
+      transactionDiv.classList.remove("hidden");
+
+      document.querySelector("input[name='transactionId']").value = "";
+      document.querySelector("input[name='senderAccountName']").value = "";
+      document.querySelector("input[name='senderAccountNumber']").value = "";
+      document.querySelector("input[name='paymentRef']").value = "";
+
+      document.querySelector("input[name='transactionId']").required = true;
+      document.querySelector("input[name='senderAccountName']").required = true;
+      document.querySelector("input[name='senderAccountNumber']").required =
+        true;
+    } else {
+      paymentInfo.classList.add("hidden");
+      transactionDiv.classList.add("hidden");
+
+      document.querySelector("input[name='transactionId']").required = false;
+      document.querySelector("input[name='senderAccountName']").required =
+        false;
+      document.querySelector("input[name='senderAccountNumber']").required =
+        false;
+    }
   };
 
   const closeModal = () => {
@@ -26,10 +113,7 @@ const EnrollModal = forwardRef((props, ref) => {
         action="https://formspree.io/f/myzjwvka"
         method="POST"
         className="space-y-4 p-6"
-        // onsubmit="return handleFormSubmit(event)"
-        onSubmit={() => {
-          handleFormSubmit();
-        }}
+        onSubmit={handleFormSubmit}
       >
         <div className="flex items-center justify-between border-b border-gray-700 pb-2">
           <h3 className="text-2xl font-bold text-cyan-400">
@@ -37,7 +121,6 @@ const EnrollModal = forwardRef((props, ref) => {
           </h3>
           <button
             type="button"
-            // onclick={()=> closeModal()}
             onClick={closeModal}
             className="text-xl text-gray-400 hover:text-white"
           >
@@ -86,7 +169,7 @@ const EnrollModal = forwardRef((props, ref) => {
             <select
               id="paymentMethod"
               name="paymentMethod"
-              onchange="showPaymentDetails()"
+              onChange={showPaymentDetails}
               className="w-full rounded-lg bg-gray-800 p-3 text-white"
               required
             >
