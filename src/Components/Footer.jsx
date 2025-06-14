@@ -12,7 +12,6 @@ const Footer = () => {
   const modalRef = useRef();
 
   const openModal = () => {
-    console.log("modal hit");
     modalRef.current?.openModal();
   };
 
