@@ -169,11 +169,12 @@ const EnrollModal = forwardRef((props, ref) => {
             <select
               id="paymentMethod"
               name="paymentMethod"
+              defaultValue=""
               onChange={showPaymentDetails}
               className="w-full rounded-lg bg-gray-800 p-3 text-white"
               required
             >
-              <option value="" disabled selected>
+              <option value="" disabled>
                 Select one
               </option>
               <option value="islami">Islami Bank</option>
