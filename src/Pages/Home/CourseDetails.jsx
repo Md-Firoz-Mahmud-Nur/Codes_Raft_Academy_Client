@@ -1,8 +1,16 @@
 import React, { useRef } from "react";
 import EnrollModal from "../../Components/EnrollModal";
+import {
+  FaBriefcase,
+  FaCalendarAlt,
+  FaMapSigns,
+  FaQuestionCircle,
+  FaTasks,
+} from "react-icons/fa";
+import { FaCircleQuestion, FaLaptopCode } from "react-icons/fa6";
 
 const CourseDetails = () => {
-    const modalRef = useRef();
+  const modalRef = useRef();
 
   const openModal = () => {
     modalRef.current?.openModal();
@@ -25,7 +33,7 @@ const CourseDetails = () => {
         <div class="grid gap-8 text-left md:grid-cols-3">
           <div class="rounded-2xl border border-gray-700 bg-gray-800 p-6 shadow-lg transition hover:shadow-cyan-600/30">
             <div class="mb-4 text-3xl text-cyan-400">
-              <i class="fas fa-map-signs"></i>
+              <FaMapSigns></FaMapSigns>
             </div>
             <h3 class="mb-2 text-xl font-bold text-white">12 Milestones</h3>
             <p class="text-sm text-gray-300">
@@ -36,7 +44,7 @@ const CourseDetails = () => {
 
           <div class="rounded-2xl border border-gray-700 bg-gray-800 p-6 shadow-lg transition hover:shadow-cyan-600/30">
             <div class="mb-4 text-3xl text-cyan-400">
-              <i class="fas fa-calendar-alt"></i>
+              <FaCalendarAlt></FaCalendarAlt>
             </div>
             <h3 class="mb-2 text-xl font-bold text-white">6 Months Long</h3>
             <p class="text-sm text-gray-300">
@@ -47,7 +55,7 @@ const CourseDetails = () => {
 
           <div class="rounded-2xl border border-gray-700 bg-gray-800 p-6 shadow-lg transition hover:shadow-cyan-600/30">
             <div class="mb-4 text-3xl text-cyan-400">
-              <i class="fas fa-laptop-code"></i>
+              <FaLaptopCode></FaLaptopCode>
             </div>
             <h3 class="mb-2 text-xl font-bold text-white">12 Live Projects</h3>
             <p class="text-sm text-gray-300">
@@ -58,7 +66,7 @@ const CourseDetails = () => {
 
           <div class="rounded-2xl border border-gray-700 bg-gray-800 p-6 shadow-lg transition hover:shadow-cyan-600/30">
             <div class="mb-4 text-3xl text-cyan-400">
-              <i class="fas fa-tasks"></i>
+              <FaTasks></FaTasks>
             </div>
             <h3 class="mb-2 text-xl font-bold text-white">12 Assignments</h3>
             <p class="text-sm text-gray-300">
@@ -69,7 +77,7 @@ const CourseDetails = () => {
 
           <div class="rounded-2xl border border-gray-700 bg-gray-800 p-6 shadow-lg transition hover:shadow-cyan-600/30">
             <div class="mb-4 text-3xl text-cyan-400">
-              <i class="fas fa-question-circle"></i>
+              <FaCircleQuestion></FaCircleQuestion>
             </div>
             <h3 class="mb-2 text-xl font-bold text-white">12 Quizzes</h3>
             <p class="text-sm text-gray-300">
@@ -80,7 +88,7 @@ const CourseDetails = () => {
 
           <div class="rounded-2xl border border-gray-700 bg-gray-800 p-6 shadow-lg transition hover:shadow-cyan-600/30">
             <div class="mb-4 text-3xl text-cyan-400">
-              <i class="fas fa-briefcase"></i>
+              <FaBriefcase></FaBriefcase>
             </div>
             <h3 class="mb-2 text-xl font-bold text-white">Job Preparation</h3>
             <p class="text-sm text-gray-300">
