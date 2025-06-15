@@ -5,7 +5,9 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
+    console.log(form.name.value);
     const formData = new FormData(form);
+    console.log(formData);
 
     try {
       const response = await fetch("https://formspree.io/f/mwpbozlo", {

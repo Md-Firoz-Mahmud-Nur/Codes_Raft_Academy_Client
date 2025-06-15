@@ -1,5 +1,6 @@
 import React from "react";
 import Form from "./Form";
+import About from "./About";
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
           this is home
         </div>
       </div>
+      <About></About>
       <Form></Form>
     </>
   );
