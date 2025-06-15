@@ -1,6 +1,47 @@
 import React from "react";
+import Swal from "sweetalert2";
 
 const Form = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/mwpbozlo", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formData,
+      });
+
+      if (response.ok) {
+        Swal.fire({
+          icon: "success",
+          title: "Message Sent!",
+          text: "Thanks for contacting us. We’ll get back to you shortly.",
+          confirmButtonColor: "#06b6d4",
+        });
+        form.reset();
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Something went wrong!",
+          text: "Please try again or contact us through WhatsApp.",
+          confirmButtonColor: "#ef4444",
+        });
+      }
+    } catch (error) {
+      console.log("error", error);
+      Swal.fire({
+        icon: "error",
+        title: "Network Error!",
+        text: "Check your internet connection and try again.",
+        confirmButtonColor: "#ef4444",
+      });
+    }
+  };
   return (
     <section
       id="contact"
@@ -19,6 +60,7 @@ const Form = () => {
 
         <form
           id="contactForm"
+          onSubmit={handleSubmit}
           className="w-full space-y-6 rounded-2xl bg-gray-800 p-8 shadow-2xl"
         >
           <div>
