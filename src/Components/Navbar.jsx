@@ -22,6 +22,10 @@ const Navbar = () => {
     },
   ];
   return (
+    <>
+{/* new nav */}
+
+{/* old nav */}
     <div className="z-50 border-b bg-[#00000042]">
       <div className="navbar sticky top-0 container mx-auto">
         <div className="navbar-start">
@@ -151,6 +155,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

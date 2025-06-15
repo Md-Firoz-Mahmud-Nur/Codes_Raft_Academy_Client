@@ -1,5 +1,16 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import EnrollModal from "../../Components/EnrollModal";
+import {
+  FaBolt,
+  FaCode,
+  FaCss3,
+  FaFire,
+  FaHtml5,
+  FaJs,
+  FaNodeJs,
+  FaReact,
+  FaServer,
+} from "react-icons/fa";
 
 const Hero = () => {
   const modalRef = useRef();
@@ -12,31 +23,31 @@ const Hero = () => {
       <div className="absolute inset-0 z-0 bg-[url('https://media.licdn.com/dms/image/v2/D4E12AQGGBOMh72oC4w/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1734475126370?e=2147483647&v=beta&t=cikzFHkOx0010MX55I82_NL2yZEjEjB_zJJ7BDlBgDg')] bg-cover opacity-20"></div>
 
       <div className="animate-bounce-slow absolute top-10 left-8 text-5xl text-orange-500 opacity-30">
-        <i className="fab fa-html5"></i>
+        <FaHtml5></FaHtml5>
       </div>
       <div className="absolute top-24 right-8 animate-pulse text-5xl text-blue-500 opacity-30">
-        <i className="fab fa-css3-alt"></i>
+        <FaCss3></FaCss3>
       </div>
       <div className="animate-spin-slow absolute bottom-20 left-10 text-5xl text-yellow-400 opacity-30">
-        <i className="fab fa-js"></i>
+        <FaJs></FaJs>
       </div>
       <div className="absolute top-1/3 right-10 animate-bounce text-5xl text-cyan-400 opacity-30">
-        <i className="fab fa-react"></i>
+        <FaReact></FaReact>
       </div>
       <div className="animate-float absolute right-20 bottom-10 text-5xl text-green-400 opacity-30">
-        <i className="fab fa-node-js"></i>
+        <FaNodeJs></FaNodeJs>
       </div>
       <div className="animate-fade absolute top-[30%] left-1/4 text-5xl text-gray-400 opacity-20">
-        <i className="fas fa-server"></i>
+        <FaServer></FaServer>
       </div>
       <div className="animate-spin-slow absolute right-[25%] bottom-[30%] text-5xl text-yellow-300 opacity-30">
-        <i className="fas fa-fire"></i>
+        <FaFire></FaFire>
       </div>
       <div className="absolute top-[70%] left-[45%] animate-pulse text-5xl text-fuchsia-500 opacity-30">
-        <i className="fas fa-bolt"></i>
+        <FaBolt></FaBolt>
       </div>
       <div className="absolute top-1/2 left-1/2 z-0 -translate-x-1/2 -translate-y-1/2 text-[12rem] text-gray-800 opacity-5">
-        <i className="fas fa-code"></i>
+        <FaCode></FaCode>{" "}
       </div>
 
       <div className="z-10">
@@ -64,6 +75,51 @@ const Hero = () => {
         </div>
       </div>
       <EnrollModal ref={modalRef} />
+      <style>
+        {`
+
+
+      .animate-bounce-slow {
+        animation: bounce 5s infinite;
+      }
+
+      .animate-spin-slow {
+        animation: spin 15s linear infinite;
+      }
+
+      .animate-float {
+        animation: float 8s ease-in-out infinite;
+      }
+
+      .animate-fade {
+        animation: fadeInOut 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+
+        50% {
+          transform: translateY(-20px);
+        }
+
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInOut {
+        0%,
+        100% {
+          opacity: 0.3;
+        }
+
+        50% {
+          opacity: 0.7;
+        }
+      } `}
+      </style>
     </section>
   );
 };
