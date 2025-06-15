@@ -1,12 +1,20 @@
-import { Link, NavLink } from "react-router-dom";
+import { href, Link, NavLink } from "react-router-dom";
 import logo from "../assets/CodeRaft-Logo.png";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import AuthContext from "../AuthContext";
 import Loader from "./Loader";
+import EnrollModal from "./EnrollModal";
 
 const Navbar = () => {
   const { logout, user, setIsModalOpen, loading } = useContext(AuthContext);
   console.log(loading);
+
+  const modalRef = useRef();
+
+  const openModal = () => {
+    modalRef.current?.openModal();
+  };
+
   const links = [
     {
       to: "/",
@@ -21,6 +29,30 @@ const Navbar = () => {
       name: "Profile",
     },
   ];
+
+  const newLinks = [
+    {
+      href: "#",
+      name: "Home",
+    },
+    {
+      href: "#details",
+      name: "Course Details",
+    },
+    {
+      href: "#plans",
+      name: "Plans",
+    },
+    {
+      href: "#about",
+      name: "About",
+    },
+    {
+      href: "#contact",
+      name: "Contact",
+    },
+  ];
+
   return (
     <>
       {/* new nav */}
@@ -36,36 +68,19 @@ const Navbar = () => {
             </div>
 
             <div className="hidden items-center space-x-6 md:flex">
-              <a href="#" className="text-gray-300 transition hover:text-white">
-                Home
-              </a>
-              <a
-                href="#details"
-                className="text-gray-300 transition hover:text-white"
-              >
-                Course Details
-              </a>
-              <a
-                href="#plans"
-                className="text-gray-300 transition hover:text-white"
-              >
-                Plans
-              </a>
-              <a
-                href="#about"
-                className="text-gray-300 transition hover:text-white"
-              >
-                About
-              </a>
-              <a
-                href="#contact"
-                className="text-gray-300 transition hover:text-white"
-              >
-                Contact
-              </a>
+              {newLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-gray-300 transition hover:text-white"
+                >
+                  {link.name}
+                </a>
+              ))}
+
               <a
                 href="#enroll"
-                onclick="document.getElementById('enrollModal').showModal()"
+                onClick={() => openModal()}
                 className="rounded-lg bg-cyan-500 px-4 py-2 text-white transition hover:bg-cyan-600"
               >
                 Enroll
@@ -173,13 +188,14 @@ const Navbar = () => {
           </a>
           <a
             href="#enroll"
-            onclick="document.getElementById('enrollModal').showModal()"
+            onClick={() => openModal()}
             className="block rounded-lg bg-cyan-500 px-4 py-2 text-center text-white hover:bg-cyan-600"
           >
             Enroll
           </a>
         </div>
       </nav>
+      <EnrollModal ref={modalRef} />
       {/* old nav */}
       {/* <div className="z-50 mt-24 border-b bg-[#00000042]">
         <div className="navbar sticky top-0 container mx-auto">
