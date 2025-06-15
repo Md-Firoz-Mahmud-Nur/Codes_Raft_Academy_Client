@@ -2,6 +2,7 @@ import React from "react";
 import Form from "./Form";
 import About from "./About";
 import CoursePlan from "./CoursePlan";
+import CourseDetails from "./CourseDetails";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
           this is home
         </div>
       </div>
+      <CourseDetails></CourseDetails>
       <CoursePlan></CoursePlan>
       <About></About>
       <Form></Form>

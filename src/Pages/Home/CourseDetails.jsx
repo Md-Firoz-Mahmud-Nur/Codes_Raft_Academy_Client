@@ -1,0 +1,108 @@
+import React, { useRef } from "react";
+import EnrollModal from "../../Components/EnrollModal";
+
+const CourseDetails = () => {
+    const modalRef = useRef();
+
+  const openModal = () => {
+    modalRef.current?.openModal();
+  };
+  return (
+    <section
+      id="details"
+      class="bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 px-6 py-20 text-white"
+    >
+      <div class="mx-auto max-w-7xl text-center">
+        <h2 class="mb-4 text-5xl font-extrabold text-cyan-400">
+          Course Details
+        </h2>
+        <p class="mx-auto mb-16 max-w-3xl text-lg text-gray-400">
+          Our 6-month beginner-friendly MERN Stack course takes you from zero to
+          job-ready with real-world projects, expert guidance, and career
+          support every step of the way.
+        </p>
+
+        <div class="grid gap-8 text-left md:grid-cols-3">
+          <div class="rounded-2xl border border-gray-700 bg-gray-800 p-6 shadow-lg transition hover:shadow-cyan-600/30">
+            <div class="mb-4 text-3xl text-cyan-400">
+              <i class="fas fa-map-signs"></i>
+            </div>
+            <h3 class="mb-2 text-xl font-bold text-white">12 Milestones</h3>
+            <p class="text-sm text-gray-300">
+              Each milestone builds a new skill — from HTML/CSS basics to
+              full-stack projects with React, Node, and MongoDB.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-gray-700 bg-gray-800 p-6 shadow-lg transition hover:shadow-cyan-600/30">
+            <div class="mb-4 text-3xl text-cyan-400">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <h3 class="mb-2 text-xl font-bold text-white">6 Months Long</h3>
+            <p class="text-sm text-gray-300">
+              3 recorded and 2 live classes weekly — perfect for
+              working/studying individuals. Easy to follow at your own pace.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-gray-700 bg-gray-800 p-6 shadow-lg transition hover:shadow-cyan-600/30">
+            <div class="mb-4 text-3xl text-cyan-400">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <h3 class="mb-2 text-xl font-bold text-white">12 Live Projects</h3>
+            <p class="text-sm text-gray-300">
+              Work on real-world projects including dashboards, authentication
+              systems, and booking apps to build your portfolio.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-gray-700 bg-gray-800 p-6 shadow-lg transition hover:shadow-cyan-600/30">
+            <div class="mb-4 text-3xl text-cyan-400">
+              <i class="fas fa-tasks"></i>
+            </div>
+            <h3 class="mb-2 text-xl font-bold text-white">12 Assignments</h3>
+            <p class="text-sm text-gray-300">
+              Structured tasks after every milestone to solidify your learning
+              with instructor feedback and guidance.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-gray-700 bg-gray-800 p-6 shadow-lg transition hover:shadow-cyan-600/30">
+            <div class="mb-4 text-3xl text-cyan-400">
+              <i class="fas fa-question-circle"></i>
+            </div>
+            <h3 class="mb-2 text-xl font-bold text-white">12 Quizzes</h3>
+            <p class="text-sm text-gray-300">
+              Boost your understanding and track your progress with fun,
+              interactive quizzes at every stage of the course.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-gray-700 bg-gray-800 p-6 shadow-lg transition hover:shadow-cyan-600/30">
+            <div class="mb-4 text-3xl text-cyan-400">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <h3 class="mb-2 text-xl font-bold text-white">Job Preparation</h3>
+            <p class="text-sm text-gray-300">
+              Mock interviews, portfolio reviews, resume help, and career
+              guidance to confidently step into tech jobs or freelancing.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-16">
+          <a
+            href="#enroll"
+            onClick={() => openModal()}
+            class="transform rounded-xl bg-gradient-to-r from-cyan-500 to-teal-500 px-8 py-3 font-bold text-white shadow-lg transition-transform hover:scale-105 hover:from-teal-500 hover:to-cyan-600"
+          >
+            Join the Course Now
+          </a>
+        </div>
+      </div>
+      <EnrollModal ref={modalRef} />
+    </section>
+  );
+};
+
+export default CourseDetails;
