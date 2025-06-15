@@ -100,9 +100,9 @@ const About = () => {
 
         <p className="mx-auto mt-16 max-w-3xl text-lg text-gray-300">
           We’re here to help in
-          <span className="font-semibold text-cyan-400">
+          <span className="font-semibold text-cyan-400">{" "}
             every way possible
-          </span>{" "}
+          </span>
           — until you feel confident and job-ready. This isn’t just a course.
           It’s your launchpad.
         </p>

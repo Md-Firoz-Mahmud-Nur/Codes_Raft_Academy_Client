@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "./Form";
 import About from "./About";
+import CoursePlan from "./CoursePlan";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
           this is home
         </div>
       </div>
+      <CoursePlan></CoursePlan>
       <About></About>
       <Form></Form>
     </>
