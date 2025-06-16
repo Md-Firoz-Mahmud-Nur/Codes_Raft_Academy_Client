@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import logo from "../assets/CodeRaft-Logo.png";
 import { useContext, useRef, useState } from "react";
 import AuthContext from "../AuthContext";
 import Loader from "./Loader";
@@ -27,12 +26,14 @@ const Navbar = () => {
       <nav className="fixed top-0 z-50 w-full border-b border-gray-800 bg-gray-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
-            {/* Logo */}
             <div className="flex items-center">
-              <img src={logo} alt="CodesRaft Logo" className="h-10" />
+              <img
+                src="https://codesraft.com/CodeRaft-Logo.png"
+                alt="CodesRaft Logo"
+                className="h-10"
+              />
             </div>
 
-            {/* Desktop Menu */}
             <div className="hidden items-center space-x-6 md:flex">
               {newLinks.map((link) => (
                 <a
@@ -50,8 +51,7 @@ const Navbar = () => {
                 Enroll
               </button>
 
-              {/* Auth */}
-              <div className="navbar-end gap-4">
+              <div>
                 {loading ? (
                   <Loader />
                 ) : user ? (
@@ -97,7 +97,8 @@ const Navbar = () => {
                 ) : (
                   <Link
                     onClick={() => setIsModalOpen(true)}
-                    className="btn btn-outline border-2 bg-transparent text-xl hover:border-black"
+                    className="transform rounded-lg border border-gray-600 px-4 py-2 text-gray-300 transition-transform hover:scale-105 hover:border-white hover:text-white"
+                    
                   >
                     Login
                   </Link>
