@@ -32,14 +32,12 @@ const SignModal = () => {
   };
 
   const handleResetPassword = () => {
-    console.log("reset password hit ");
     setIsResetPasswordMode(!isResetPasswordMode);
   };
 
   const handleGoogleSignIn = () => {
     setLoadingGoogle(true);
     googleSigIn().then(async (result) => {
-      console.log(result.user);
       const userInfo = {
         name: result.user?.displayName,
         email: result.user?.email,
@@ -69,7 +67,6 @@ const SignModal = () => {
     setLoading(true);
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
     try {
       const result = await signInUser(email, password);
       const userLastLoginTime = {
@@ -79,7 +76,6 @@ const SignModal = () => {
       await axiosPublic.put(`/users/${result.user?.email}`, userLastLoginTime);
 
       if (!result.user.emailVerified) {
-        console.log("Email is not verified.");
         toast.error("Please verify your email before signing in.");
         setLoading(false);
         logout();
@@ -124,18 +120,13 @@ const SignModal = () => {
         // add account creation time
       };
 
-      console.log("newUser", newUser);
 
       const result = await createUser(email, password);
-
-      console.log(result);
 
       const userLastLoginTime = {
         lastSignInTime: result.user?.metadata?.lastSignInTime,
         lastLoginAt: result.user?.metadata?.lastLoginAt,
       };
-
-      console.log("userLastLoginTime", userLastLoginTime);
 
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_SERVER}/users`,
@@ -176,7 +167,6 @@ const SignModal = () => {
     e.preventDefault();
     setLoading(true);
     const email = e.target.email.value;
-    console.log(email);
 
     try {
       const response = await fetch(`${import.meta.env.VITE_URL}user/${email}`);

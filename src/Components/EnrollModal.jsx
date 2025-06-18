@@ -32,12 +32,8 @@ const EnrollModal = () => {
   };
 
   const handleFormSubmit = (event) => {
-    console.log("form submit hit");
-
     event.preventDefault();
     const form = event.target;
-
-    console.log("form", form);
 
     fetch(form.action, {
       method: form.method,

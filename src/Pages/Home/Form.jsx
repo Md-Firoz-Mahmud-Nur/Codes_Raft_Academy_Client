@@ -5,9 +5,7 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
-    console.log(form.name.value);
     const formData = new FormData(form);
-    console.log(formData);
 
     try {
       const response = await fetch("https://formspree.io/f/mwpbozlo", {
@@ -35,12 +33,12 @@ const Form = () => {
         });
       }
     } catch (error) {
-      console.log("error", error);
       Swal.fire({
         icon: "error",
         title: "Network Error!",
         text: "Check your internet connection and try again.",
         confirmButtonColor: "#ef4444",
+        message: error.message,
       });
     }
   };
