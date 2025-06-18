@@ -315,7 +315,7 @@ const SignModal = () => {
                         required
                       />
                       <span
-                        className="  absolute top-3 right-3 ml-2 cursor-pointer"
+                        className="absolute top-3 right-3 ml-2 cursor-pointer"
                         onClick={(e) => {
                           e.preventDefault();
                           setShowPassword(!showPassword);
@@ -348,7 +348,7 @@ const SignModal = () => {
                     className={`mt-4 w-full rounded-xl px-4 py-2 text-lg text-white ${
                       loading
                         ? "cursor-not-allowed bg-gray-400"
-                        : " btn btn-primary"
+                        : "btn btn-primary"
                     }`}
                   >
                     {loading ? "Loading..." : "Sign In"}
@@ -359,46 +359,46 @@ const SignModal = () => {
             {/* Sign Up */}
             {isSignUpMode && !isResetPasswordMode && (
               <>
-                <div className="animate-fade-in mt-4">
+                <div className="mt-4">
                   <form onSubmit={handleRegister}>
                     <div className="mb-4 pt-1">
-                      <label className="block text-sm font-medium text-gray-700 dark:text-white">
+                      <label className="block text-sm font-medium text-white/90">
                         Name
                       </label>
                       <input
                         type="text"
                         name="name"
-                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 dark:text-white dark:placeholder:text-white"
+                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-white/90 placeholder:text-white/90"
                         placeholder="Enter your name"
                         required
                       />
                     </div>
                     <div className="mb-4 pt-1">
-                      <label className="block text-sm font-medium text-gray-700 dark:text-white">
+                      <label className="block text-sm font-medium text-white/90">
                         Email
                       </label>
                       <input
                         type="email"
                         name="email"
-                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 dark:text-white dark:placeholder:text-white"
+                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-white/90 placeholder:text-white/90"
                         placeholder="Enter your email"
                         required
                       />
                     </div>
                     <div className="mb-4 pt-1">
-                      <label className="block text-sm font-medium text-gray-700 dark:text-white">
+                      <label className="block text-sm font-medium text-white/90">
                         Password
                       </label>
                       <div className="relative">
                         <input
                           type={showPassword ? "text" : "password"}
                           name="password"
-                          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 dark:text-white dark:placeholder:text-white"
+                          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-white/90 placeholder:text-white/90"
                           placeholder="Enter your password"
                           required
                         />
                         <span
-                          className="  absolute top-3 right-3 ml-2 cursor-pointer"
+                          className="absolute top-3 right-3 ml-2 cursor-pointer"
                           onClick={(e) => {
                             e.preventDefault();
                             setShowPassword(!showPassword);
@@ -421,10 +421,10 @@ const SignModal = () => {
                     <button
                       type="submit"
                       disabled={loading}
-                      className={`mt-4 w-full rounded-xl px-4 py-2 text-lg text-white ${
+                      className={`mt-4 w-full rounded-xl px-4 py-2 text-lg text-white/90 ${
                         loading
                           ? "cursor-not-allowed bg-gray-400"
-                          : " "
+                          : "btn btn-primary"
                       }`}
                     >
                       {loading ? "Loading..." : "Sign Up"}
@@ -460,9 +460,7 @@ const SignModal = () => {
                   type="submit"
                   disabled={loading}
                   className={`mt-4 w-full rounded-xl px-4 py-2 text-lg text-white ${
-                    loading
-                      ? "cursor-not-allowed bg-gray-400"
-                      : " "
+                    loading ? "cursor-not-allowed bg-gray-400" : " "
                   }`}
                 >
                   {loading ? "Loading..." : "Reset Password"}
