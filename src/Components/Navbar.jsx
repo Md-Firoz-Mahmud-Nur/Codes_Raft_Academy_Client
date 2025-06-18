@@ -98,7 +98,6 @@ const Navbar = () => {
                   <Link
                     onClick={() => setIsModalOpen(true)}
                     className="transform rounded-lg border border-gray-600 px-4 py-2 text-gray-300 transition-transform hover:scale-105 hover:border-white hover:text-white"
-                    
                   >
                     Login
                   </Link>
@@ -106,7 +105,6 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Mobile Button */}
             <div className="flex items-center md:hidden">
               <button
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
@@ -130,7 +128,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
         {isMobileOpen && (
           <div className="space-y-2 px-4 pb-4 md:hidden">
             {newLinks.map((link) => (
@@ -152,7 +149,6 @@ const Navbar = () => {
         )}
       </nav>
 
-      {/* Enroll Modal */}
       <EnrollModal ref={modalRef} />
     </>
   );

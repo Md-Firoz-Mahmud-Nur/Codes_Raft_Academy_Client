@@ -5,15 +5,11 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import EnrollModal from "./EnrollModal";
-import { useRef } from "react";
+import { useContext } from "react";
+import AuthContext from "../AuthContext";
 
 const Footer = () => {
-  const modalRef = useRef();
-
-  const openModal = () => {
-    modalRef.current?.openModal();
-  };
+  const { setIsEnrollModalOpen } = useContext(AuthContext);
 
   return (
     <>
@@ -54,7 +50,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#enroll"
-                  onClick={() => openModal()}
+                  onClick={() => setIsEnrollModalOpen(true)}
                   className="transition hover:text-white"
                 >
                   Enroll
@@ -112,7 +108,6 @@ const Footer = () => {
           rights reserved.
         </p>
       </footer>
-      <EnrollModal ref={modalRef} />
     </>
   );
 };

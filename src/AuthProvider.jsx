@@ -19,14 +19,9 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEnrollModalOpen, setIsEnrollModalOpen] = useState(false);
   const axiosPublic = useAxiosPublic();
 
-  // const [archiveData, setArchiveData] = useState([]);
-
-  // const updateArchiveData = (newData) => {
-  //   setArchiveData(newData);
-  //   console.log("Updated archiveData:", newData);
-  // };
 
   const googleSigIn = () => {
     setLoading(true);
@@ -115,7 +110,11 @@ const AuthProvider = ({ children }) => {
     setIsModalOpen,
     passwordResetEmail,
     sendEmailVerification,
+    isEnrollModalOpen,
+    setIsEnrollModalOpen,
   };
+
+  console.log("isEnrollModalOpen auth provider", isEnrollModalOpen);
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
