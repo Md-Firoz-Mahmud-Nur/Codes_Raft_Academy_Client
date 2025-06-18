@@ -1,12 +1,9 @@
-import React, { useRef } from "react";
-import EnrollModal from "../../Components/EnrollModal";
+import { useContext } from "react";
+
+import AuthContext from "../../AuthContext";
 
 const CoursePlan = () => {
-  const modalRef = useRef();
-
-  const openModal = () => {
-    modalRef.current?.openModal();
-  };
+  const { setIsEnrollModalOpen } = useContext(AuthContext);
 
   return (
     <section
@@ -24,7 +21,7 @@ const CoursePlan = () => {
         </p>
 
         <div
-          className="mx-auto max-w-md transform rounded-3xl border border-gray-700 bg-gradient-to-tr from-gray-800 via-gray-900 to-gray-800 p-12 shadow-xl transition transition-transform hover:scale-[1.03] hover:shadow-cyan-600/30"
+          className="mx-auto max-w-md transform rounded-3xl border border-gray-700 bg-gradient-to-tr from-gray-800 via-gray-900 to-gray-800 p-12 shadow-xl transition-transform hover:scale-[1.03] hover:shadow-cyan-600/30"
           role="region"
           aria-labelledby="plan-title"
         >
@@ -66,7 +63,7 @@ const CoursePlan = () => {
 
           <a
             href="#enroll"
-            onClick={() => openModal()}
+            onClick={() => setIsEnrollModalOpen(true)}
             className="focus:ring-opacity-50 mt-12 inline-block transform rounded-2xl bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 px-12 py-4 font-semibold text-white shadow-lg transition-transform hover:scale-105 hover:from-teal-500 hover:via-cyan-500 hover:to-blue-600 focus:ring-4 focus:ring-cyan-400 focus:outline-none"
             role="button"
           >
@@ -74,8 +71,6 @@ const CoursePlan = () => {
           </a>
         </div>
       </div>
-
-      <EnrollModal ref={modalRef} />
 
       <style>
         {`

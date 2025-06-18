@@ -1,5 +1,3 @@
-import { useRef } from "react";
-import EnrollModal from "../../Components/EnrollModal";
 import {
   FaBolt,
   FaCode,
@@ -11,13 +9,12 @@ import {
   FaReact,
   FaServer,
 } from "react-icons/fa";
+import AuthContext from "../../AuthContext";
+import { useContext } from "react";
 
 const Hero = () => {
-  const modalRef = useRef();
+  const { setIsEnrollModalOpen } = useContext(AuthContext);
 
-  const openModal = () => {
-    modalRef.current?.openModal();
-  };
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gray-950 px-6 text-center text-white">
       <div className="absolute inset-0 z-0 bg-[url('https://media.licdn.com/dms/image/v2/D4E12AQGGBOMh72oC4w/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1734475126370?e=2147483647&v=beta&t=cikzFHkOx0010MX55I82_NL2yZEjEjB_zJJ7BDlBgDg')] bg-cover opacity-20"></div>
@@ -61,7 +58,7 @@ const Hero = () => {
         <div>
           <a
             href="#enroll"
-            onClick={() => openModal()}
+            onClick={() => setIsEnrollModalOpen(true)}
             className="mr-3 transform rounded-xl bg-cyan-500 px-8 py-4 font-bold text-white shadow-lg transition-transform hover:scale-105 hover:bg-cyan-600"
           >
             Start Learning
@@ -74,7 +71,6 @@ const Hero = () => {
           </a>
         </div>
       </div>
-      <EnrollModal ref={modalRef} />
       <style>
         {`
 

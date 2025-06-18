@@ -1,20 +1,16 @@
-import React, { useRef } from "react";
-import EnrollModal from "../../Components/EnrollModal";
 import {
   FaBriefcase,
   FaCalendarAlt,
   FaMapSigns,
-  FaQuestionCircle,
   FaTasks,
 } from "react-icons/fa";
 import { FaCircleQuestion, FaLaptopCode } from "react-icons/fa6";
+import AuthContext from "../../AuthContext";
+import { useContext } from "react";
 
 const CourseDetails = () => {
-  const modalRef = useRef();
+  const { setIsEnrollModalOpen } = useContext(AuthContext);
 
-  const openModal = () => {
-    modalRef.current?.openModal();
-  };
   return (
     <section
       id="details"
@@ -57,7 +53,9 @@ const CourseDetails = () => {
             <div className="mb-4 text-3xl text-cyan-400">
               <FaLaptopCode></FaLaptopCode>
             </div>
-            <h3 className="mb-2 text-xl font-bold text-white">12 Live Projects</h3>
+            <h3 className="mb-2 text-xl font-bold text-white">
+              12 Live Projects
+            </h3>
             <p className="text-sm text-gray-300">
               Work on real-world projects including dashboards, authentication
               systems, and booking apps to build your portfolio.
@@ -68,7 +66,9 @@ const CourseDetails = () => {
             <div className="mb-4 text-3xl text-cyan-400">
               <FaTasks></FaTasks>
             </div>
-            <h3 className="mb-2 text-xl font-bold text-white">12 Assignments</h3>
+            <h3 className="mb-2 text-xl font-bold text-white">
+              12 Assignments
+            </h3>
             <p className="text-sm text-gray-300">
               Structured tasks after every milestone to solidify your learning
               with instructor feedback and guidance.
@@ -90,7 +90,9 @@ const CourseDetails = () => {
             <div className="mb-4 text-3xl text-cyan-400">
               <FaBriefcase></FaBriefcase>
             </div>
-            <h3 className="mb-2 text-xl font-bold text-white">Job Preparation</h3>
+            <h3 className="mb-2 text-xl font-bold text-white">
+              Job Preparation
+            </h3>
             <p className="text-sm text-gray-300">
               Mock interviews, portfolio reviews, resume help, and career
               guidance to confidently step into tech jobs or freelancing.
@@ -101,14 +103,13 @@ const CourseDetails = () => {
         <div className="mt-16">
           <a
             href="#enroll"
-            onClick={() => openModal()}
+            onClick={() => setIsEnrollModalOpen(true)}
             className="transform rounded-xl bg-gradient-to-r from-cyan-500 to-teal-500 px-8 py-3 font-bold text-white shadow-lg transition-transform hover:scale-105 hover:from-teal-500 hover:to-cyan-600"
           >
             Join the Course Now
           </a>
         </div>
       </div>
-      <EnrollModal ref={modalRef} />
     </section>
   );
 };
