@@ -222,7 +222,7 @@ const SignModal = () => {
                   onClick={() => setIsResetPasswordMode(!isResetPasswordMode)}
                   className="absolute top-5 left-5 flex size-10 cursor-pointer items-center justify-center rounded-full bg-slate-200"
                 >
-                  <IoMdArrowBack className="flex items-center justify-center text-3xl"></IoMdArrowBack>
+                  <IoMdArrowBack className="flex items-center justify-center text-3xl text-blue-600"></IoMdArrowBack>
                 </button>
               )}
               <button
@@ -412,7 +412,7 @@ const SignModal = () => {
                     <p className="my-2">
                       Have An Account?
                       <span
-                        className="text-blue-500"
+                        className="cursor-pointer text-blue-500"
                         onClick={toggleSignUpMode}
                       >
                         Sign In
@@ -440,13 +440,13 @@ const SignModal = () => {
                 className="flex h-[440px] flex-col justify-between pt-4"
               >
                 <div className="mb-4 flex-shrink-0">
-                  <label className="block text-sm font-medium text-gray-700 dark:text-white">
+                  <label className="block text-sm font-medium text-white/90">
                     Email
                   </label>
                   <input
                     type="email"
                     name="email"
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 dark:text-white dark:placeholder:text-white"
+                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-white/90 placeholder:text-white/90"
                     placeholder="Enter your email"
                     required
                   />
@@ -460,7 +460,9 @@ const SignModal = () => {
                   type="submit"
                   disabled={loading}
                   className={`mt-4 w-full rounded-xl px-4 py-2 text-lg text-white ${
-                    loading ? "cursor-not-allowed bg-gray-400" : " "
+                    loading
+                      ? "cursor-not-allowed bg-gray-400"
+                      : "btn btn-primary"
                   }`}
                 >
                   {loading ? "Loading..." : "Reset Password"}
