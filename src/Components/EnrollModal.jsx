@@ -1,9 +1,17 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import AuthContext from "../AuthContext";
 
 const EnrollModal = () => {
   const { isEnrollModalOpen, setIsEnrollModalOpen } = useContext(AuthContext);
+  const [selectedMethod, setSelectedMethod] = useState("");
+  const [showTransactionFields, setShowTransactionFields] = useState(false);
+
+  const handlePaymentChange = (e) => {
+    const method = e.target.value;
+    setSelectedMethod(method);
+    setShowTransactionFields(!!paymentDetailsMap[method]);
+  };
 
   const paymentDetailsMap = {
     islami: {
@@ -46,8 +54,6 @@ const EnrollModal = () => {
             text: "We have received your information. We’ll contact you soon!",
           });
           form.reset();
-          document.getElementById("paymentInfo").classList.add("hidden");
-          document.getElementById("transactionDetails").classList.add("hidden");
           closeModal();
         } else {
           throw new Error("Submission failed");
@@ -62,37 +68,6 @@ const EnrollModal = () => {
       });
 
     return false;
-  };
-
-  const showPaymentDetails = () => {
-    const method = document.getElementById("paymentMethod").value;
-    const paymentInfo = document.getElementById("paymentInfo");
-    const transactionDiv = document.getElementById("transactionDetails");
-
-    if (method && paymentDetailsMap[method]) {
-      paymentInfo.textContent = paymentDetailsMap[method].info;
-      paymentInfo.classList.remove("hidden");
-      transactionDiv.classList.remove("hidden");
-
-      document.querySelector("input[name='transactionId']").value = "";
-      document.querySelector("input[name='senderAccountName']").value = "";
-      document.querySelector("input[name='senderAccountNumber']").value = "";
-      document.querySelector("input[name='paymentRef']").value = "";
-
-      document.querySelector("input[name='transactionId']").required = true;
-      document.querySelector("input[name='senderAccountName']").required = true;
-      document.querySelector("input[name='senderAccountNumber']").required =
-        true;
-    } else {
-      paymentInfo.classList.add("hidden");
-      transactionDiv.classList.add("hidden");
-
-      document.querySelector("input[name='transactionId']").required = false;
-      document.querySelector("input[name='senderAccountName']").required =
-        false;
-      document.querySelector("input[name='senderAccountNumber']").required =
-        false;
-    }
   };
 
   const closeModal = () => {
@@ -166,7 +141,7 @@ const EnrollModal = () => {
                     id="paymentMethod"
                     name="paymentMethod"
                     defaultValue=""
-                    onChange={showPaymentDetails}
+                    onChange={handlePaymentChange}
                     className="w-full rounded-lg bg-gray-800 p-3 text-white"
                     required
                   >
@@ -179,41 +154,42 @@ const EnrollModal = () => {
                     <option value="rocket">Rocket</option>
                     <option value="nogod">Nagad</option>
                   </select>
-                </div>
-
-                <div
-                  id="paymentInfo"
-                  className="hidden rounded-lg bg-gray-800 p-3 text-sm text-cyan-300"
-                ></div>
-
-                <div id="transactionDetails" className="hidden space-y-4">
-                  <input
-                    type="text"
-                    name="transactionId"
-                    placeholder="Transaction ID / Reference Number"
-                    required
-                    className="w-full rounded-lg bg-gray-800 p-3 text-white"
-                  />
-                  <input
-                    type="text"
-                    name="senderAccountName"
-                    placeholder="Your Account Name (Sender)"
-                    required
-                    className="w-full rounded-lg bg-gray-800 p-3 text-white"
-                  />
-                  <input
-                    type="text"
-                    name="senderAccountNumber"
-                    placeholder="Your Account Number (Sender)"
-                    required
-                    className="w-full rounded-lg bg-gray-800 p-3 text-white"
-                  />
-                  <input
-                    type="text"
-                    name="paymentRef"
-                    placeholder="Additional Reference (Optional)"
-                    className="w-full rounded-lg bg-gray-800 p-3 text-white"
-                  />
+                  {selectedMethod && (
+                    <div className="rounded-lg bg-gray-800 p-3 text-sm text-cyan-300">
+                      {paymentDetailsMap[selectedMethod].info}
+                    </div>
+                  )}
+                  {showTransactionFields && (
+                    <div className="mt-4 space-y-4">
+                      <input
+                        type="text"
+                        name="transactionId"
+                        placeholder="Transaction ID / Reference Number"
+                        required
+                        className="w-full rounded-lg bg-gray-800 p-3 text-white"
+                      />
+                      <input
+                        type="text"
+                        name="senderAccountName"
+                        placeholder="Your Account Name (Sender)"
+                        required
+                        className="w-full rounded-lg bg-gray-800 p-3 text-white"
+                      />
+                      <input
+                        type="text"
+                        name="senderAccountNumber"
+                        placeholder="Your Account Number (Sender)"
+                        required
+                        className="w-full rounded-lg bg-gray-800 p-3 text-white"
+                      />
+                      <input
+                        type="text"
+                        name="paymentRef"
+                        placeholder="Additional Reference (Optional)"
+                        className="w-full rounded-lg bg-gray-800 p-3 text-white"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
 
