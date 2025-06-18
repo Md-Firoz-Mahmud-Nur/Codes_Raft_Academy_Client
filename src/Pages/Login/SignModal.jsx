@@ -120,7 +120,6 @@ const SignModal = () => {
         // add account creation time
       };
 
-
       const result = await createUser(email, password);
 
       const userLastLoginTime = {
@@ -154,8 +153,6 @@ const SignModal = () => {
 
       await logout();
 
-      // toast.success("Registered Successfully");
-
       setIsModalOpen(false);
     } catch (error) {
       toast.error(error.message);
@@ -167,9 +164,10 @@ const SignModal = () => {
     e.preventDefault();
     setLoading(true);
     const email = e.target.email.value;
-
     try {
-      const response = await fetch(`${import.meta.env.VITE_URL}user/${email}`);
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_SERVER}/user/${email}`,
+      );
       const user = await response.json();
 
       if (!user || user.length === 0) {
@@ -182,6 +180,8 @@ const SignModal = () => {
       await passwordResetEmail(email);
       toast.success("Reset Password Email sent successfully.");
       setIsResetPasswordMode(false);
+      setIsModalOpen(false);
+      setLoading(false);
     } catch (error) {
       toast.error("Failed to send password reset email: " + error.message);
     }
@@ -305,7 +305,7 @@ const SignModal = () => {
                         required
                       />
                       <span
-                        className="absolute top-3 right-3 ml-2 cursor-pointer"
+                        className="text-secondary absolute top-3 right-3 ml-2 cursor-pointer"
                         onClick={(e) => {
                           e.preventDefault();
                           setShowPassword(!showPassword);
@@ -386,9 +386,12 @@ const SignModal = () => {
                           className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-white/90 placeholder:text-white/90"
                           placeholder="Enter your password"
                           required
+                          onChange={() => {
+                            if (loading) setLoading(false);
+                          }}
                         />
                         <span
-                          className="absolute top-3 right-3 ml-2 cursor-pointer"
+                          className="text-secondary absolute top-3 right-3 ml-2 cursor-pointer"
                           onClick={(e) => {
                             e.preventDefault();
                             setShowPassword(!showPassword);
@@ -439,6 +442,9 @@ const SignModal = () => {
                     className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-white/90 placeholder:text-white/90"
                     placeholder="Enter your email"
                     required
+                    onChange={() => {
+                      if (loading) setLoading(false);
+                    }}
                   />
                   <div className="mt-6">
                     <span className="flex h-full cursor-pointer text-blue-500">
