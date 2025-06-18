@@ -204,7 +204,7 @@ const SignModal = () => {
           id="modal-overlay"
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-2 backdrop-blur-sm md:p-10"
         >
-          <div className="relative rounded-2xl border border-white bg-gray-800 p-4 text-white/90 shadow-xl backdrop-blur-xl md:p-10">
+          <div className="relative rounded-2xl border border-white/70 bg-gray-800 p-4 text-white/90 shadow-xl backdrop-blur-xl md:p-10">
             {/* Back And Cross Button */}
             <div className="flex justify-between">
               {isModalOpen && isResetPasswordMode && (

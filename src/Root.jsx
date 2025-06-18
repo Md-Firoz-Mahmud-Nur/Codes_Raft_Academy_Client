@@ -6,9 +6,11 @@ import { useContext } from "react";
 import AuthContext from "./AuthContext";
 import SignModal from "./Pages/Login/SignModal";
 import EnrollModal from "./Components/EnrollModal";
+import { Toaster } from "react-hot-toast";
 
 const Root = () => {
   const { user, isModalOpen } = useContext(AuthContext);
+
 
   return (
     <div>
@@ -17,6 +19,7 @@ const Root = () => {
       <EnrollModal></EnrollModal>
       <Outlet></Outlet>
       <Footer></Footer>
+      <Toaster></Toaster>
     </div>
   );
 };

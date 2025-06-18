@@ -50,10 +50,7 @@ const Navbar = () => {
                 {loading ? (
                   <Loader />
                 ) : user ? (
-                  <div
-                    className="tooltip tooltip-left dropdown dropdown-end"
-                    data-tip={user.displayName || "User"}
-                  >
+                  <div className="dropdown dropdown-end">
                     <div
                       tabIndex={0}
                       role="button"
@@ -70,6 +67,7 @@ const Navbar = () => {
                       className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 gap-4 p-2 shadow-sm"
                     >
                       <li>
+                        <div>user name : {user.displayName || "User"}</div>
                         <Link
                           to="/profile"
                           onClick={() => document.activeElement.blur()}
