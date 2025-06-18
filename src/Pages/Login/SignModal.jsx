@@ -214,20 +214,20 @@ const SignModal = () => {
           id="modal-overlay"
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-2 backdrop-blur-sm md:p-10"
         >
-          <div className="dark:bg-themeColor3 relative rounded-2xl bg-white p-4 md:p-10 dark:border-white">
+          <div className="relative rounded-2xl border border-white bg-gray-800 p-4 text-white/90 shadow-xl backdrop-blur-xl md:p-10">
             {/* Back And Cross Button */}
             <div className="flex justify-between">
               {isModalOpen && isResetPasswordMode && (
                 <button
                   onClick={() => setIsResetPasswordMode(!isResetPasswordMode)}
-                  className="dark:bg-themeColor2 absolute top-5 left-5 flex size-10 cursor-pointer items-center justify-center rounded-full bg-slate-200"
+                  className="absolute top-5 left-5 flex size-10 cursor-pointer items-center justify-center rounded-full bg-slate-200"
                 >
                   <IoMdArrowBack className="flex items-center justify-center text-3xl"></IoMdArrowBack>
                 </button>
               )}
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="dark:bg-themeColor2 absolute top-5 right-5 flex size-10 cursor-pointer items-center justify-center rounded-full bg-slate-200 text-red-600"
+                className="absolute top-5 right-5 flex size-10 cursor-pointer items-center justify-center rounded-full bg-slate-200 text-red-600"
               >
                 <ImCross></ImCross>
               </button>
@@ -290,32 +290,32 @@ const SignModal = () => {
 
                 <form onSubmit={handleSignIn}>
                   <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 dark:text-white">
+                    <label className="block text-sm font-medium text-white/90">
                       Email
                     </label>
                     <input
                       type="email"
                       name="email"
-                      className="dark:bg-themeColor3 mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 dark:text-white dark:placeholder:text-white"
+                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-white placeholder:text-white"
                       placeholder="Enter your email"
                       required
                     />
                   </div>
 
                   <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 dark:text-white">
+                    <label className="block text-sm font-medium text-white">
                       Password
                     </label>
                     <div className="relative">
                       <input
                         type={showPassword ? "text" : "password"}
                         name="password"
-                        className="dark:bg-themeColor3 mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 dark:text-white dark:placeholder:text-white"
+                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-white placeholder:text-white"
                         placeholder="Enter your password"
                         required
                       />
                       <span
-                        className="text-pm-color hover:text-sec-color absolute top-3 right-3 ml-2 cursor-pointer"
+                        className="  absolute top-3 right-3 ml-2 cursor-pointer"
                         onClick={(e) => {
                           e.preventDefault();
                           setShowPassword(!showPassword);
@@ -334,7 +334,7 @@ const SignModal = () => {
                     </span>
                   </p>
                   <p className="my-2">
-                    New to DevDive?{" "}
+                    New to CodesRaft?{" "}
                     <span
                       className="cursor-pointer text-blue-500"
                       onClick={toggleSignUpMode}
@@ -348,7 +348,7 @@ const SignModal = () => {
                     className={`mt-4 w-full rounded-xl px-4 py-2 text-lg text-white ${
                       loading
                         ? "cursor-not-allowed bg-gray-400"
-                        : "bg-pm-color hover:bg-sec-color"
+                        : " btn btn-primary"
                     }`}
                   >
                     {loading ? "Loading..." : "Sign In"}
@@ -368,7 +368,7 @@ const SignModal = () => {
                       <input
                         type="text"
                         name="name"
-                        className="dark:bg-themeColor3 mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 dark:text-white dark:placeholder:text-white"
+                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 dark:text-white dark:placeholder:text-white"
                         placeholder="Enter your name"
                         required
                       />
@@ -380,7 +380,7 @@ const SignModal = () => {
                       <input
                         type="email"
                         name="email"
-                        className="dark:bg-themeColor3 mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 dark:text-white dark:placeholder:text-white"
+                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 dark:text-white dark:placeholder:text-white"
                         placeholder="Enter your email"
                         required
                       />
@@ -393,12 +393,12 @@ const SignModal = () => {
                         <input
                           type={showPassword ? "text" : "password"}
                           name="password"
-                          className="dark:bg-themeColor3 mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 dark:text-white dark:placeholder:text-white"
+                          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 dark:text-white dark:placeholder:text-white"
                           placeholder="Enter your password"
                           required
                         />
                         <span
-                          className="text-pm-color hover:text-sec-color absolute top-3 right-3 ml-2 cursor-pointer"
+                          className="  absolute top-3 right-3 ml-2 cursor-pointer"
                           onClick={(e) => {
                             e.preventDefault();
                             setShowPassword(!showPassword);
@@ -424,7 +424,7 @@ const SignModal = () => {
                       className={`mt-4 w-full rounded-xl px-4 py-2 text-lg text-white ${
                         loading
                           ? "cursor-not-allowed bg-gray-400"
-                          : "bg-pm-color hover:bg-sec-color"
+                          : " "
                       }`}
                     >
                       {loading ? "Loading..." : "Sign Up"}
@@ -446,7 +446,7 @@ const SignModal = () => {
                   <input
                     type="email"
                     name="email"
-                    className="dark:bg-themeColor3 mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 dark:text-white dark:placeholder:text-white"
+                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 dark:text-white dark:placeholder:text-white"
                     placeholder="Enter your email"
                     required
                   />
@@ -462,7 +462,7 @@ const SignModal = () => {
                   className={`mt-4 w-full rounded-xl px-4 py-2 text-lg text-white ${
                     loading
                       ? "cursor-not-allowed bg-gray-400"
-                      : "bg-pm-color hover:bg-sec-color"
+                      : " "
                   }`}
                 >
                   {loading ? "Loading..." : "Reset Password"}

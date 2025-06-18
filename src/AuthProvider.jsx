@@ -71,7 +71,6 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setLoading(true);
-      console.log("currentUser", currentUser);
       if (currentUser) {
         setUser(currentUser);
         const userInfo = { email: currentUser.email };
@@ -110,8 +109,6 @@ const AuthProvider = ({ children }) => {
     isEnrollModalOpen,
     setIsEnrollModalOpen,
   };
-
-  console.log("isEnrollModalOpen auth provider", isEnrollModalOpen);
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
