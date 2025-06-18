@@ -5,6 +5,7 @@ import Footer from "./Components/Footer";
 import { useContext } from "react";
 import AuthContext from "./AuthContext";
 import SignModal from "./Pages/Login/SignModal";
+import EnrollModal from "./Components/EnrollModal";
 
 const Root = () => {
   const { user, isModalOpen } = useContext(AuthContext);
@@ -13,6 +14,7 @@ const Root = () => {
     <div>
       <Navbar></Navbar>
       {isModalOpen && user === null && <SignModal></SignModal>}
+      <EnrollModal></EnrollModal>
       <Outlet></Outlet>
       <Footer></Footer>
     </div>

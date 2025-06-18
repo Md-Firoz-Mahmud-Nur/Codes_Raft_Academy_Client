@@ -1,17 +1,12 @@
 import { Link } from "react-router-dom";
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../AuthContext";
 import Loader from "./Loader";
-import EnrollModal from "./EnrollModal";
 
 const Navbar = () => {
-  const { logout, user, setIsModalOpen, loading } = useContext(AuthContext);
-  const modalRef = useRef();
+  const { logout, user, setIsModalOpen, loading, setIsEnrollModalOpen } =
+    useContext(AuthContext);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-
-  const openModal = () => {
-    modalRef.current?.openModal();
-  };
 
   const newLinks = [
     { href: "#", name: "Home" },
@@ -45,7 +40,7 @@ const Navbar = () => {
                 </a>
               ))}
               <button
-                onClick={openModal}
+                onClick={() => setIsEnrollModalOpen(true)}
                 className="rounded-lg bg-cyan-500 px-4 py-2 text-white transition hover:bg-cyan-600"
               >
                 Enroll
@@ -140,7 +135,7 @@ const Navbar = () => {
               </a>
             ))}
             <button
-              onClick={openModal}
+              onClick={() => setIsEnrollModalOpen(true)}
               className="block w-full rounded-lg bg-cyan-500 px-4 py-2 text-center text-white hover:bg-cyan-600"
             >
               Enroll
@@ -148,8 +143,6 @@ const Navbar = () => {
           </div>
         )}
       </nav>
-
-      <EnrollModal ref={modalRef} />
     </>
   );
 };
