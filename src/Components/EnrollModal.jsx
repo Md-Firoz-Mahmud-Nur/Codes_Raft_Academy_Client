@@ -66,8 +66,6 @@ const EnrollModal = () => {
           text: "Something went wrong. Please try again.",
         });
       });
-
-    return false;
   };
 
   const closeModal = () => {
@@ -75,7 +73,7 @@ const EnrollModal = () => {
   };
 
   return (
-    <div>
+    <>
       {isEnrollModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-950/25 backdrop-blur-sm">
           <div className="w-full max-w-xl rounded-xl bg-gray-900 p-0 text-white shadow-xl">
@@ -138,7 +136,6 @@ const EnrollModal = () => {
                     Choose Payment Method:
                   </label>
                   <select
-                    id="paymentMethod"
                     name="paymentMethod"
                     defaultValue=""
                     onChange={handlePaymentChange}
@@ -155,7 +152,7 @@ const EnrollModal = () => {
                     <option value="nogod">Nagad</option>
                   </select>
                   {selectedMethod && (
-                    <div className="rounded-lg bg-gray-800 p-3 text-sm text-cyan-300">
+                    <div className="mt-4 rounded-lg bg-gray-800 p-3 text-sm text-cyan-300">
                       {paymentDetailsMap[selectedMethod].info}
                     </div>
                   )}
@@ -212,7 +209,7 @@ const EnrollModal = () => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

@@ -22,14 +22,13 @@ const AuthProvider = ({ children }) => {
   const [isEnrollModalOpen, setIsEnrollModalOpen] = useState(false);
   const axiosPublic = useAxiosPublic();
 
-
   const googleSigIn = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   const createUser = (email, password) => {
-    console.log("createUserFrom AuthProvider", email,password);
+    console.log("createUserFrom AuthProvider", email, password);
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -75,11 +74,8 @@ const AuthProvider = ({ children }) => {
       console.log("currentUser", currentUser);
       if (currentUser) {
         setUser(currentUser);
-        // console.log("effect", currentUser);
         const userInfo = { email: currentUser.email };
-        // console.log(userInfo);
         axiosPublic.post("/jwt", userInfo).then((res) => {
-          // console.log(res.data.token);
           if (res.data.token) {
             localStorage.setItem("access-token", res.data.token);
             setLoading(false);
@@ -94,7 +90,8 @@ const AuthProvider = ({ children }) => {
     return () => {
       return unsubscribe();
     };
-  }, [auth]);
+  }, [axiosPublic]);
+
   const authInfo = {
     user,
     setUser,

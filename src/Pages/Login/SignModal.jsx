@@ -205,7 +205,7 @@ const SignModal = () => {
     };
     window.addEventListener("click", handleClickOutside);
     return () => window.removeEventListener("click", handleClickOutside);
-  }, []);
+  }, [setIsModalOpen]);
 
   return (
     <div className="flex w-full items-center justify-center">
