@@ -1,9 +1,13 @@
+import ShakaPlayer from "../../Components/ShakaPlayer";
 
 const Profile = () => {
   return (
-    <div className="flex h-[50vh] bg-slate-200">
-      <div className="container mx-auto flex items-center justify-center">
+    <div className=" bg-slate-200">
+      <div className="container mx-auto flex items-center justify-center p-24">
         Profile
+      </div>
+      <div className="p-6">
+        <ShakaPlayer src="https://codesraft.com/nur/testVideo/manifest.mpd"></ShakaPlayer>
       </div>
     </div>
   );
