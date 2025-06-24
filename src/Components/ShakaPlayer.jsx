@@ -7,33 +7,55 @@ const ShakaPlayer = ({ src }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    const video = videoRef.current;
-    const container = containerRef.current;
+    const timeout = setTimeout(() => {
+      const video = videoRef.current;
+      const container = containerRef.current;
 
-    shaka.polyfill.installAll();
+      if (!video || !container) {
+        console.error("Video or container not available after delay");
+        return;
+      }
 
-    if (!shaka.Player.isBrowserSupported()) {
-      console.error("Browser not supported!");
-      return;
-    }
-    const ui = new shaka.ui.Overlay(new shaka.Player(video), container, video);
+      shaka.polyfill.installAll();
 
-    const controls = ui.getControls();
-    const player = controls.getPlayer();
+      if (!shaka.Player.isBrowserSupported()) {
+        console.error("Browser not supported!");
+        return;
+      }
 
-    window.player = player;
-    window.ui = ui;
+      const player = new shaka.Player(video);
 
-    player
-      .load(src)
-      .then(() => console.log("The video has now been loaded!"))
-      .catch((error) => {
-        console.error("Error loading video", error);
+      const ui = new shaka.ui.Overlay(player, container, video);
+      ui.configure({
+        controlPanelElements: [
+          "play_pause",
+          "mute",
+          "volume",
+          "time_and_duration",
+          "spacer",
+          "loop",
+          "fullscreen",
+          "playback_rate",
+          "quality",
+        ],
+        addSeekBar: true,
       });
 
-    // Clean up on unmount
+      window.player = player;
+      window.ui = ui;
+
+      player
+        .load(src)
+        .then(() => console.log("The video has now been loaded!"))
+        .catch((error) => {
+          console.error("Error loading video", error);
+        });
+    });
+
     return () => {
-      player.destroy();
+      clearTimeout(timeout);
+      window.player?.destroy();
+      window.ui?.destroy();
     };
   }, [src]);
 
@@ -41,13 +63,10 @@ const ShakaPlayer = ({ src }) => {
     <div
       ref={containerRef}
       className="shaka-player-component"
-      data-shaka-player-container
-      data-shaka-player-cast-receiver-id="07AEE832"
       style={{ maxWidth: "40em", width: "100%" }}
     >
       <video
         ref={videoRef}
-        data-shaka-player
         id="video"
         style={{ width: "100%", height: "100%" }}
       />
