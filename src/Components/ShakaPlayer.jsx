@@ -25,8 +25,7 @@ const ShakaPlayer = ({ src }) => {
 
       const player = new shaka.Player(video);
 
-      const ui = new shaka.ui.Overlay(player, container, video);
-      ui.configure({
+      const config = {
         controlPanelElements: [
           "play_pause",
           "mute",
@@ -39,7 +38,19 @@ const ShakaPlayer = ({ src }) => {
           "quality",
         ],
         addSeekBar: true,
-      });
+        seekBarColors: {
+          played: "rgba(2, 148, 249,0.9)",
+          buffered: "rgba(255, 255, 255, 0.8)",
+          base: "rgba(255, 255, 255, 0.3)",
+        },
+        volumeBarColors: {
+          base: "rgba(20, 255, 255, 0.54)",
+          level: "rgb(255, 20, 255)",
+        },
+      };
+
+      const ui = new shaka.ui.Overlay(player, container, video);
+      ui.configure(config);
 
       window.player = player;
       window.ui = ui;
@@ -63,7 +74,7 @@ const ShakaPlayer = ({ src }) => {
     <div
       ref={containerRef}
       className="shaka-player-component"
-      style={{ maxWidth: "40em", width: "100%" }}
+      style={{ maxWidth: "75%", width: "100%" }}
     >
       <video
         ref={videoRef}

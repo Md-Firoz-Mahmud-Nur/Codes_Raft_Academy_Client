@@ -1,2 +1,12 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@layer utilities {
+  .shaka-mute-button + .shaka-volume-bar-container {
+    width: 100px !important;
+    opacity: 1 !important;
+  }
+
+  .shaka-volume-bar-container {
+    transition: none !important;
+  }
+}
