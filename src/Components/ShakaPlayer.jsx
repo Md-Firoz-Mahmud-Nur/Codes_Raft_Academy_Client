@@ -34,11 +34,8 @@ const ShakaPlayer = ({ src }) => {
           "spacer",
           "loop",
           "fullscreen",
-          // "playback_rate",
-          // "quality",
           "overflow_menu",
         ],
-        overflowMenu: true,
         overflowMenuButtons: ["quality", "playback_rate"],
         addSeekBar: true,
         seekBarColors: {
@@ -46,8 +43,6 @@ const ShakaPlayer = ({ src }) => {
           base: "rgb(255, 255, 255)",
         },
         qualityMarks: {
-          480: "",
-          720: "",
           1080: "HD",
         },
         playbackRates: [0.75, 1, 1.25, 1.5, 2],
@@ -55,6 +50,7 @@ const ShakaPlayer = ({ src }) => {
 
       const ui = new shaka.ui.Overlay(player, container, video);
       ui.configure(config);
+      // container.focus();
 
       window.player = player;
       window.ui = ui;
@@ -77,6 +73,7 @@ const ShakaPlayer = ({ src }) => {
   return (
     <div
       ref={containerRef}
+      // tabIndex={0}
       className="shaka-player-component"
       style={{ maxWidth: "75%", width: "100%" }}
     >
