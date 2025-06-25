@@ -3,7 +3,9 @@ import Swal from "sweetalert2";
 import AuthContext from "../AuthContext";
 
 const EnrollModal = () => {
-  const { isEnrollModalOpen, setIsEnrollModalOpen } = useContext(AuthContext);
+  const { isEnrollModalOpen, setIsEnrollModalOpen, user } =
+    useContext(AuthContext);
+
   const [selectedMethod, setSelectedMethod] = useState("");
   const [showTransactionFields, setShowTransactionFields] = useState(false);
 
@@ -98,6 +100,8 @@ const EnrollModal = () => {
                   type="text"
                   name="fullname"
                   placeholder="Full Name"
+                  defaultValue={user?.displayName}
+                  readOnly
                   required
                   className="w-full rounded-lg bg-gray-800 p-3 text-white"
                 />
@@ -105,6 +109,8 @@ const EnrollModal = () => {
                   type="email"
                   name="email"
                   placeholder="Email Address"
+                  defaultValue={user?.email}
+                  readOnly
                   required
                   className="w-full rounded-lg bg-gray-800 p-3 text-white"
                 />
@@ -157,28 +163,21 @@ const EnrollModal = () => {
                       <input
                         type="text"
                         name="transactionId"
-                        placeholder="Transaction ID / Reference Number"
-                        required
-                        className="w-full rounded-lg bg-gray-800 p-3 text-white"
-                      />
-                      <input
-                        type="text"
-                        name="senderAccountName"
-                        placeholder="Your Account Name (Sender)"
+                        placeholder="Transaction ID"
                         required
                         className="w-full rounded-lg bg-gray-800 p-3 text-white"
                       />
                       <input
                         type="text"
                         name="senderAccountNumber"
-                        placeholder="Your Account Number (Sender)"
+                        placeholder="Sender Account Number"
                         required
                         className="w-full rounded-lg bg-gray-800 p-3 text-white"
                       />
                       <input
                         type="text"
                         name="paymentRef"
-                        placeholder="Additional Reference (Optional)"
+                        placeholder="Referral Code"
                         className="w-full rounded-lg bg-gray-800 p-3 text-white"
                       />
                     </div>

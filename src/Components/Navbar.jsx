@@ -9,11 +9,11 @@ const Navbar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const newLinks = [
-    { href: "#", name: "Home" },
-    { href: "#details", name: "Course Details" },
-    { href: "#plans", name: "Plans" },
-    { href: "#about", name: "About" },
-    { href: "#contact", name: "Contact" },
+    { href: "/#", name: "Home" },
+    { href: "/#details", name: "Course Details" },
+    { href: "/#plans", name: "Plans" },
+    { href: "/#about", name: "About" },
+    { href: "/#contact", name: "Contact" },
   ];
 
   return (
@@ -39,13 +39,6 @@ const Navbar = () => {
                   {link.name}
                 </a>
               ))}
-              <button
-                onClick={() => setIsEnrollModalOpen(true)}
-                className="rounded-lg bg-cyan-500 px-4 py-2 text-white transition hover:bg-cyan-600"
-              >
-                Enroll
-              </button>
-
               <div>
                 {loading ? (
                   <Loader />
