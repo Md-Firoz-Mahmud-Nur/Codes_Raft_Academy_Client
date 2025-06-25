@@ -34,14 +34,23 @@ const ShakaPlayer = ({ src }) => {
           "spacer",
           "loop",
           "fullscreen",
-          "playback_rate",
-          "quality",
+          // "playback_rate",
+          // "quality",
+          "overflow_menu",
         ],
+        overflowMenu: true,
+        overflowMenuButtons: ["quality", "playback_rate"],
         addSeekBar: true,
         seekBarColors: {
           played: "rgb(2, 148, 249)",
           base: "rgb(255, 255, 255)",
         },
+        qualityMarks: {
+          480: "",
+          720: "",
+          1080: "HD",
+        },
+        playbackRates: [0.75, 1, 1.25, 1.5, 2],
       };
 
       const ui = new shaka.ui.Overlay(player, container, video);
