@@ -39,13 +39,8 @@ const ShakaPlayer = ({ src }) => {
         ],
         addSeekBar: true,
         seekBarColors: {
-          played: "rgba(2, 148, 249,0.9)",
-          buffered: "rgba(255, 255, 255, 0.8)",
-          base: "rgba(255, 255, 255, 0.3)",
-        },
-        volumeBarColors: {
-          base: "rgba(20, 255, 255, 0.54)",
-          level: "rgb(255, 20, 255)",
+          played: "rgb(2, 148, 249)",
+          base: "rgb(255, 255, 255)",
         },
       };
 

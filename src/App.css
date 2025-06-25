@@ -9,4 +9,9 @@
   .shaka-volume-bar-container {
     transition: none !important;
   }
+
+  .shaka-seek-bar-container {
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+  }
 }
