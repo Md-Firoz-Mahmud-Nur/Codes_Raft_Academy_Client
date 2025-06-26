@@ -61,12 +61,21 @@ const Navbar = () => {
                     >
                       <li>
                         <div>user name : {user.displayName || "User"}</div>
+
                         <Link
                           to="/profile"
                           onClick={() => document.activeElement.blur()}
                           className="btn btn-outline border-2 bg-transparent hover:border-black"
                         >
                           Profile
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/classes"
+                          className="btn btn-outline border-2 bg-transparent hover:border-black"
+                        >
+                          Classes
                         </Link>
                       </li>
                       <li>
