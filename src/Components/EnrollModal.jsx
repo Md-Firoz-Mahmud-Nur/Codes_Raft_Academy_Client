@@ -1,10 +1,14 @@
 import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import AuthContext from "../AuthContext";
+import usePaymentNumbers from "../Hooks/usePaymentInfo";
 
 const EnrollModal = () => {
   const { isEnrollModalOpen, setIsEnrollModalOpen, user } =
     useContext(AuthContext);
+
+  const { paymentNumbers, isLoading } = usePaymentNumbers();
+  console.log(paymentNumbers, isLoading);
 
   const [selectedMethod, setSelectedMethod] = useState("");
   const [showTransactionFields, setShowTransactionFields] = useState(false);
