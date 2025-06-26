@@ -2,72 +2,67 @@ import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import AuthContext from "../AuthContext";
 import usePaymentNumbers from "../Hooks/usePaymentInfo";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const EnrollModal = () => {
   const { isEnrollModalOpen, setIsEnrollModalOpen, user } =
     useContext(AuthContext);
-
   const { paymentNumbers, isLoading } = usePaymentNumbers();
+  const [selectedMethod, setSelectedMethod] = useState("");
+  const axiosPublic = useAxiosPublic();
   console.log(paymentNumbers, isLoading);
 
-  const [selectedMethod, setSelectedMethod] = useState("");
   const [showTransactionFields, setShowTransactionFields] = useState(false);
 
   const handlePaymentChange = (e) => {
     const method = e.target.value;
     setSelectedMethod(method);
-    setShowTransactionFields(!!paymentDetailsMap[method]);
+    setShowTransactionFields(true);
   };
 
-  const paymentDetailsMap = {
-    islami: {
-      info: "Send 5000 BDT to Islami Bank A/C: 1234567890123",
-    },
-    dutchbangla: {
-      info: "Send 5000 BDT to Dutch Bangla Bank A/C: 10123456789",
-    },
-    bkash: {
-      info: "Send 5000 BDT to bKash: 017XXXXXXXX",
-    },
-    rocket: {
-      info: "Send 5000 BDT to Rocket: 018XXXXXXXX",
-    },
-    nogod: {
-      info: "Send 5000 BDT to Nagad: 019XXXXXXXX",
-    },
-  };
+  const selectedPaymentInfo = paymentNumbers.find(
+    (item) => item.method?.toLowerCase() === selectedMethod.toLowerCase(),
+  );
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
     const form = event.target;
 
-    fetch(form.action, {
-      method: form.method,
-      body: new FormData(form),
-      headers: {
-        Accept: "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          Swal.fire({
-            icon: "success",
-            title: "Enrollment Successful!",
-            text: "We have received your information. We’ll contact you soon!",
-          });
-          form.reset();
-          closeModal();
-        } else {
-          throw new Error("Submission failed");
-        }
-      })
-      .catch(() => {
+    const formData = {
+      fullname: form.fullname.value,
+      email: form.email.value,
+      whatsapp: form.whatsapp.value,
+      location: form.location.value,
+      occupation: form.occupation.value,
+      paymentMethod: form.paymentMethod.value,
+      transactionId: form.transactionId?.value,
+      senderAccountName: form.senderAccountName?.value,
+      senderAccountNumber: form.senderAccountNumber?.value,
+      paymentRef: form.paymentRef?.value,
+    };
+
+    try {
+      const res = await axiosPublic.post("/enrollments", formData);
+      console.log("response", res);
+      if (res.data.insertedId) {
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong. Please try again.",
+          icon: "success",
+          title: "Enrollment Successful!",
+          text: "We have received your information. We’ll contact you soon!",
         });
+        form.reset();
+        closeModal();
+      } else {
+        throw new Error("Insertion failed");
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong. Please try again.",
       });
+      console.error(error);
+    }
   };
 
   const closeModal = () => {
@@ -81,8 +76,6 @@ const EnrollModal = () => {
           <div className="w-full max-w-xl rounded-xl bg-gray-900 p-0 text-white shadow-xl">
             <form
               id="enrollForm"
-              action="https://formspree.io/f/myzjwvka"
-              method="POST"
               className="space-y-4 p-6"
               onSubmit={handleFormSubmit}
             >
@@ -151,17 +144,36 @@ const EnrollModal = () => {
                     <option value="" disabled>
                       Select one
                     </option>
-                    <option value="islami">Islami Bank</option>
-                    <option value="dutchbangla">Dutch Bangla Bank</option>
-                    <option value="bkash">bKash</option>
-                    <option value="rocket">Rocket</option>
-                    <option value="nogod">Nagad</option>
+                    <option value="Bkash">bKash</option>
+                    <option value="Nagad">Nagad</option>
+                    <option value="Rocket">Rocket</option>
+                    <option value="Dutch Bangla Bank">Dutch Bangla Bank</option>
                   </select>
-                  {selectedMethod && (
+
+                  {selectedPaymentInfo && (
                     <div className="mt-4 rounded-lg bg-gray-800 p-3 text-sm text-cyan-300">
-                      {paymentDetailsMap[selectedMethod].info}
+                      {selectedPaymentInfo.method && (
+                        <>
+                          Send money 5000 BDT to {selectedPaymentInfo.method}:{" "}
+                          {selectedPaymentInfo.number}
+                          {selectedPaymentInfo?.AccountHolderName && (
+                            <>
+                              <br />
+                              A/C Holder:{" "}
+                              {selectedPaymentInfo.AccountHolderName}
+                              <br />
+                              Branch: {selectedPaymentInfo.branchName}
+                              <br />
+                              Routing No: {selectedPaymentInfo.RoutingNo}
+                              <br />
+                              SWIFT code: {selectedPaymentInfo.SWIFTcode}
+                            </>
+                          )}
+                        </>
+                      )}
                     </div>
                   )}
+
                   {showTransactionFields && (
                     <div className="mt-4 space-y-4">
                       <input
@@ -171,13 +183,24 @@ const EnrollModal = () => {
                         required
                         className="w-full rounded-lg bg-gray-800 p-3 text-white"
                       />
-                      <input
-                        type="text"
-                        name="senderAccountNumber"
-                        placeholder="Sender Account Number"
-                        required
-                        className="w-full rounded-lg bg-gray-800 p-3 text-white"
-                      />
+                      {selectedPaymentInfo?.AccountHolderName ? (
+                        <input
+                          type="text"
+                          name="senderAccountName"
+                          placeholder="Sender Account Name"
+                          required
+                          className="w-full rounded-lg bg-gray-800 p-3 text-white"
+                        />
+                      ) : (
+                        <input
+                          type="text"
+                          name="senderAccountNumber"
+                          placeholder="Sender Account Number"
+                          required
+                          className="w-full rounded-lg bg-gray-800 p-3 text-white"
+                        />
+                      )}
+
                       <input
                         type="text"
                         name="paymentRef"
