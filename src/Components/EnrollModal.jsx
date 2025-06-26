@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import AuthContext from "../AuthContext";
 import usePaymentNumbers from "../Hooks/usePaymentInfo";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
+import { FaRegCopy } from "react-icons/fa";
 
 const EnrollModal = () => {
   const { isEnrollModalOpen, setIsEnrollModalOpen, user } =
@@ -23,6 +24,28 @@ const EnrollModal = () => {
   const selectedPaymentInfo = paymentNumbers.find(
     (item) => item.method?.toLowerCase() === selectedMethod.toLowerCase(),
   );
+
+  const handleCopy = (text) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        Swal.fire({
+          toast: true,
+          position: "top-end",
+          icon: "success",
+          title: "Copied to clipboard!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Failed to copy!",
+          text: "Please try manually.",
+        });
+      });
+  };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -114,7 +137,7 @@ const EnrollModal = () => {
                 <input
                   type="text"
                   name="whatsapp"
-                  placeholder="WhatsApp Number (Optional)"
+                  placeholder="WhatsApp Number (Easy Communication)"
                   className="w-full rounded-lg bg-gray-800 p-3 text-white"
                 />
                 <input
@@ -155,7 +178,20 @@ const EnrollModal = () => {
                       {selectedPaymentInfo.method && (
                         <>
                           Send money 5000 BDT to {selectedPaymentInfo.method}:{" "}
-                          {selectedPaymentInfo.number}
+                          <span className="rounded-lg border border-gray-300 bg-gray-600 px-2 py-1">
+                            <span className="font-semibold">
+                              {selectedPaymentInfo.number}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() =>
+                                handleCopy(selectedPaymentInfo.number)
+                              }
+                              className="rounded pl-2"
+                            >
+                              <FaRegCopy />
+                            </button>
+                          </span>
                           {selectedPaymentInfo?.AccountHolderName && (
                             <>
                               <br />
