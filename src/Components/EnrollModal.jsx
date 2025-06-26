@@ -62,6 +62,8 @@ const EnrollModal = () => {
       senderAccountName: form.senderAccountName?.value,
       senderAccountNumber: form.senderAccountNumber?.value,
       paymentRef: form.paymentRef?.value,
+      status: false,
+      role: "student",
     };
 
     try {
