@@ -47,7 +47,7 @@ const Navbar = () => {
                     <div
                       tabIndex={0}
                       role="button"
-                      className="mr-2 size-10 rounded-full border-2 border-black"
+                      className="mr-2 size-10 rounded-full border-2 border-cyan-400 transition hover:border-white"
                     >
                       <img
                         className="h-full w-full rounded-full object-cover"
@@ -55,34 +55,45 @@ const Navbar = () => {
                         alt="User"
                       />
                     </div>
+
                     <ul
                       tabIndex={0}
-                      className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 gap-4 p-2 shadow-sm"
+                      className="dropdown-content menu z-[1] w-60 space-y-3 rounded-xl border border-gray-700 bg-gray-900 p-4 shadow-xl"
                     >
-                      <li>
-                        <div>user name : {user.displayName || "User"}</div>
+                      <li className="text-gray-300">
+                        <div className="text-sm font-medium text-cyan-400">
+                          {user.displayName || "User"}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          {user.email}
+                        </div>
+                      </li>
 
+                      <li>
                         <Link
                           to="/profile"
                           onClick={() => document.activeElement.blur()}
-                          className="btn btn-outline border-2 bg-transparent hover:border-black"
+                          className="block rounded-lg border border-gray-700 px-4 py-2 text-sm text-white transition hover:border-cyan-400 hover:bg-gray-800"
                         >
                           Profile
                         </Link>
                       </li>
+
                       <li>
                         <Link
                           to="/classes"
-                          className="btn btn-outline border-2 bg-transparent hover:border-black"
+                          onClick={() => document.activeElement.blur()}
+                          className="block rounded-lg border border-gray-700 px-4 py-2 text-sm text-white transition hover:border-cyan-400 hover:bg-gray-800"
                         >
                           Classes
                         </Link>
                       </li>
+
                       <li>
                         <Link
                           to="/"
                           onClick={logout}
-                          className="btn btn-outline border-2 bg-transparent hover:border-black"
+                          className="block rounded-lg border border-gray-700 px-4 py-2 text-sm text-red-400 transition hover:border-red-500 hover:bg-gray-800"
                         >
                           Logout
                         </Link>
@@ -92,7 +103,7 @@ const Navbar = () => {
                 ) : (
                   <Link
                     onClick={() => setIsModalOpen(true)}
-                    className="transform rounded-lg border border-gray-600 px-4 py-2 text-gray-300 transition-transform hover:scale-105 hover:border-white hover:text-white"
+                    className="transform rounded-lg border border-cyan-500 px-4 py-2 text-cyan-300 transition-transform hover:scale-105 hover:border-white hover:text-white"
                   >
                     Login
                   </Link>
