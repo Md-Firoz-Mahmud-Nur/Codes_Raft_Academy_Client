@@ -29,7 +29,7 @@ const CoursePlan = () => {
             id="plan-title"
             className="mb-6 text-4xl font-extrabold tracking-tight text-teal-400 select-text"
           >
-            5000 BDT
+            7500 BDT
           </h3>
           <p className="mb-8 inline-block rounded-full bg-teal-700/90 px-4 py-1 text-sm font-semibold tracking-widest uppercase select-text">
             One-time Payment

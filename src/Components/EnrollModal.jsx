@@ -5,6 +5,7 @@ import usePaymentNumbers from "../Hooks/usePaymentInfo";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { FaRegCopy } from "react-icons/fa";
 import useIsEnrolled from "../Hooks/useIsEnrolled";
+import useReferralValidation from "../Hooks/useReferralValidation";
 
 const EnrollModal = () => {
   const { isEnrollModalOpen, setIsEnrollModalOpen, user } =
@@ -13,6 +14,10 @@ const EnrollModal = () => {
   const { isEnrolled } = useIsEnrolled(user?.email, isEnrollModalOpen);
 
   const [shouldFetch, setShouldFetch] = useState(false);
+
+  const [referralCode, setReferralCode] = useState("");
+  const { referralStatus, referralInfo, loading } =
+    useReferralValidation(referralCode);
 
   // Trigger fetch only once when modal is opened
   useEffect(() => {
@@ -229,7 +234,8 @@ const EnrollModal = () => {
                         <div className="mt-4 rounded-lg bg-gray-800 p-3 text-sm text-cyan-300">
                           {selectedPaymentInfo.method && (
                             <>
-                              Send money 5000 BDT to{" "}
+                              Send money{" "}
+                              {referralStatus === "valid" ? 5000 : 7500} BDT to{" "}
                               {selectedPaymentInfo.method}:{" "}
                               <span className="rounded-lg border border-gray-300 bg-gray-600 px-2 py-1">
                                 <span className="font-semibold">
@@ -295,7 +301,31 @@ const EnrollModal = () => {
                             name="paymentRef"
                             placeholder="Referral Code"
                             className="w-full rounded-lg bg-gray-800 p-3 text-white"
+                            onChange={(e) =>
+                              setReferralCode(e.target.value.toUpperCase())
+                            }
                           />
+                          {loading && (
+                            <p className="text-sm text-yellow-400">
+                              Checking referral code...
+                            </p>
+                          )}
+                          {referralStatus === "valid" && (
+                            <p className="text-sm text-green-400">
+                              Referral code valid! {referralInfo?.name} referred
+                              you.
+                            </p>
+                          )}
+                          {referralStatus === "inactive" && (
+                            <p className="text-sm text-yellow-400">
+                              Referral code is not active.
+                            </p>
+                          )}
+                          {referralStatus === "invalid" && (
+                            <p className="text-sm text-red-400">
+                              Invalid referral code.
+                            </p>
+                          )}
                         </div>
                       )}
                     </div>
