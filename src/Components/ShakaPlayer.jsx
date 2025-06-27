@@ -75,7 +75,7 @@ const ShakaPlayer = ({ src }) => {
       ref={containerRef}
       // tabIndex={0}
       className="shaka-player-component"
-      style={{ maxWidth: "75%", width: "100%" }}
+      style={{ maxWidth: "100%", width: "100%" }}
     >
       <video
         ref={videoRef}
