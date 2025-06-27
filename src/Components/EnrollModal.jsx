@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import AuthContext from "../AuthContext";
 import usePaymentNumbers from "../Hooks/usePaymentInfo";
@@ -8,10 +8,21 @@ import { FaRegCopy } from "react-icons/fa";
 const EnrollModal = () => {
   const { isEnrollModalOpen, setIsEnrollModalOpen, user } =
     useContext(AuthContext);
-  const { paymentNumbers, isLoading } = usePaymentNumbers();
+  const [shouldFetch, setShouldFetch] = useState(false);
+
+  // Trigger fetch only once when modal is opened
+  useEffect(() => {
+    if (isEnrollModalOpen) {
+      setShouldFetch(true);
+    }
+  }, [isEnrollModalOpen]);
+
+  const { paymentNumbers, isLoading } = usePaymentNumbers(shouldFetch);
   const [selectedMethod, setSelectedMethod] = useState("");
   const axiosPublic = useAxiosPublic();
   console.log(paymentNumbers, isLoading);
+  console.log("paymentNumbers:", JSON.stringify(paymentNumbers, null, 2));
+
 
   const [showTransactionFields, setShowTransactionFields] = useState(false);
 
