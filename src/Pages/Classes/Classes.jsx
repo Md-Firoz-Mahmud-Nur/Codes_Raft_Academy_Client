@@ -16,18 +16,38 @@ const Classes = () => {
           {/* Vertical Tabs */}
           <div
             role="tablist"
-            className="tabs tabs-lift tabs-vertical flex w-full flex-row md:max-w-min md:flex-col"
+            className="tabs tabs-lift tabs-vertical hidden w-full flex-row md:block md:max-w-min md:flex-col"
           >
             {Array.from({ length: 12 }, (_, index) => (
               <a
                 key={index}
                 role="tab"
-                className={`tab text-nowrap ${activeTab === index ? "tab-active text-primary [--tab-bg:orange] [--tab-border-color:red]" : "text-white"}`}
+                className={`tab text-nowrap transition-all duration-200 ${activeTab === index ? "tab-active text-gray-800 [--tab-bg:#0ff] [--tab-border-color:#000]" : "!text-white hover:text-cyan-300"}`}
                 onClick={() => setActiveTab(index)}
               >
                 Milestone {index + 1}
               </a>
             ))}
+          </div>
+
+          {/* Scrollable Horizontal Tabs */}
+          <div className="overflow-x-auto md:hidden">
+            <div className="tabs tabs-lift flex min-w-max gap-2 whitespace-nowrap">
+              {Array.from({ length: 12 }, (_, index) => (
+                <button
+                  key={index}
+                  role="tab"
+                  onClick={() => setActiveTab(index)}
+                  className={`tab transition-all duration-200 ${
+                    activeTab === index
+                      ? "tab-active text-gray-800 [--tab-bg:#0ff] [--tab-border-color:#000]"
+                      : "!text-white hover:text-cyan-300"
+                  }`}
+                >
+                  Milestone {index + 1}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Video Player */}
