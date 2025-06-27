@@ -1,31 +1,63 @@
+import { useState } from "react";
 import useVideoLinks from "../../Hooks/useVideoLinks";
 
 const Classes = () => {
   const { videoLinks } = useVideoLinks();
+  const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div className="bg-slate-200">
-      <div className="container mx-auto flex items-center justify-center p-24">
-        My Classes
-      </div>
-      <div className="flex justify-center p-6">
-        <div
-          className="player-wrapper"
-          style={{ maxWidth: "720px", margin: "auto" }}
-        >
-          <iframe
-            width="720"
-            height="360"
-            src={videoLinks[0]?.videoLink}
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
+    <section className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 px-6 py-20 text-white">
+      <div className="mx-auto max-w-6xl">
+        <h2 className="mb-10 bg-gradient-to-r from-green-400 via-cyan-400 to-blue-500 bg-clip-text text-center text-4xl font-extrabold text-transparent">
+          My Classes & Milestones
+        </h2>
+
+        <div className="flex flex-col gap-6 md:flex-row">
+          {/* Vertical Tabs */}
+          <div
+            role="tablist"
+            className="tabs tabs-lift tabs-vertical flex w-full flex-row md:max-w-min md:flex-col"
+          >
+            {Array.from({ length: 12 }, (_, index) => (
+              <a
+                key={index}
+                role="tab"
+                className={`tab text-nowrap ${activeTab === index ? "tab-active text-primary [--tab-bg:orange] [--tab-border-color:red]" : "text-white"}`}
+                onClick={() => setActiveTab(index)}
+              >
+                Milestone {index + 1}
+              </a>
+            ))}
+          </div>
+
+          {/* Video Player */}
+          <div className="flex-1 rounded-xl border border-gray-700 bg-gray-800 p-6 shadow-lg">
+            <h3 className="mb-4 text-xl font-semibold text-cyan-400">
+              Milestone {activeTab + 1}
+            </h3>
+
+            {videoLinks?.[activeTab]?.videoLink ? (
+              <div className="player-wrapper aspect-video">
+                <iframe
+                  width="100%"
+                  src={videoLinks[activeTab].videoLink}
+                  title={`Milestone ${activeTab + 1} Video`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  className="aspect-video w-full rounded-lg shadow-md"
+                ></iframe>
+              </div>
+            ) : (
+              <p className="text-gray-400">
+                No video available for this milestone.
+              </p>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
