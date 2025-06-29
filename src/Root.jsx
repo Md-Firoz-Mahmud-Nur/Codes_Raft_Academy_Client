@@ -7,6 +7,7 @@ import AuthContext from "./AuthContext";
 import SignModal from "./Pages/Login/SignModal";
 import EnrollModal from "./Components/EnrollModal";
 import { Toaster } from "react-hot-toast";
+import WhatsappButton from "./Components/WhatsappButton";
 
 const Root = () => {
   const { user, isModalOpen } = useContext(AuthContext);
@@ -20,6 +21,7 @@ const Root = () => {
       <Outlet></Outlet>
       <Footer></Footer>
       <Toaster></Toaster>
+      <WhatsappButton></WhatsappButton>
     </div>
   );
 };
