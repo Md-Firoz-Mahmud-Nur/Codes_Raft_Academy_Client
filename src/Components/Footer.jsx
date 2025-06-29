@@ -93,7 +93,7 @@ const Footer = () => {
                 <FaYoutube></FaYoutube>
               </a>
               <a
-                href="https://wa.me/8801234567890"
+                href="https://wa.me/8801780515102"
                 target="_blank"
                 className="hover:text-green-400"
               >

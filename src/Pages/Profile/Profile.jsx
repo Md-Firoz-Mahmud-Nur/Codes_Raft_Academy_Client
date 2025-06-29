@@ -87,12 +87,22 @@ const Profile = () => {
             Course Preview Video
           </h3>
           <div className="overflow-hidden rounded-lg">
-            <ShakaPlayer
+            {/* <ShakaPlayer
               src="https://codesraft.com/nur/testVideo/manifest.mpd"
               autoPlay={false}
               width="100%"
               className="rounded"
-            />
+            /> */}
+            <iframe
+              width="100%"
+              className="aspect-video"
+              src="https://www.youtube-nocookie.com/embed/ykw9FjBDaf8?si=_UhVqRHQUQbplHuN"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
       </div>

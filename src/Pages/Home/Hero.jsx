@@ -64,7 +64,8 @@ const Hero = () => {
             Start Learning
           </a>
           <a
-            href="#details"
+            href="https://drive.google.com/file/d/1QegBV_9RZxF1aRCHoQgHnZovwWso-kxY/view"
+            target="_blank"
             className="transform rounded-xl border border-gray-600 px-8 py-4 text-gray-300 transition-transform hover:scale-105 hover:border-white hover:text-white"
           >
             View Syllabus
