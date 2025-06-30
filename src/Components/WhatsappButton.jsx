@@ -10,7 +10,7 @@ const WhatsappButton = () => {
 
       {/* Button */}
       <a
-        href="https://wa.me/881780515102"
+        href="https://wa.me/8801780515102"
         target="_blank"
         rel="noopener noreferrer"
         className="relative flex items-center justify-center w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg transition-all"
