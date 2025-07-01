@@ -2,9 +2,9 @@ import { FaWhatsapp } from "react-icons/fa";
 
 const WhatsappButton = () => {
   return (
-    <div className="fixed bottom-5 right-5 z-50 group flex flex-col items-center space-y-2">
+    <div className="group fixed right-5 bottom-5 z-50 flex flex-col items-center space-y-2">
       {/* Tooltip */}
-      <div className="mb-1 px-3 py-1 text-sm bg-gray-100 text-gray-900 rounded-t-lg rounded-l-lg opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="mb-1 rounded-t-lg rounded-l-lg bg-gray-100 px-3 py-1 text-sm text-gray-900 opacity-0 transition-opacity group-hover:opacity-100">
         Chat with us
       </div>
 
@@ -13,13 +13,13 @@ const WhatsappButton = () => {
         href="https://wa.me/8801780515102"
         target="_blank"
         rel="noopener noreferrer"
-        className="relative flex items-center justify-center w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg transition-all"
+        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg transition-all hover:bg-green-600"
       >
         {/* Pulse ring */}
-        <span className="absolute w-full h-full rounded-full animate-ping bg-green-400 opacity-70 z-0"></span>
+        <span className="absolute z-0 h-full w-full animate-ping rounded-full bg-green-400 opacity-70"></span>
 
         {/* Icon */}
-        <FaWhatsapp className="text-2xl z-10" />
+        <FaWhatsapp className="z-10 text-2xl" />
       </a>
     </div>
   );
