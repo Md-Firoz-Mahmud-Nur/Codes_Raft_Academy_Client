@@ -5,11 +5,12 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { useContext } from "react";
-import AuthContext from "../AuthContext";
+import { Link } from "react-router-dom";
+// import { useContext } from "react";
+// import AuthContext from "../AuthContext";
 
 const Footer = () => {
-  const { setIsEnrollModalOpen } = useContext(AuthContext);
+  // const { setIsEnrollModalOpen } = useContext(AuthContext);
 
   return (
     <>
@@ -48,13 +49,13 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a
-                  href="#enroll"
-                  onClick={() => setIsEnrollModalOpen(true)}
+                <Link to="/enroll"
+                  // href="#enroll"
+                  // onClick={() => setIsEnrollModalOpen(true)}
                   className="transition hover:text-white"
                 >
                   Enroll
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

@@ -5,11 +5,12 @@ import {
   FaTasks,
 } from "react-icons/fa";
 import { FaCircleQuestion, FaLaptopCode } from "react-icons/fa6";
-import AuthContext from "../../AuthContext";
-import { useContext } from "react";
+import { Link } from "react-router-dom";
+// import AuthContext from "../../AuthContext";
+// import { useContext } from "react";
 
 const CourseDetails = () => {
-  const { setIsEnrollModalOpen } = useContext(AuthContext);
+  // const { setIsEnrollModalOpen } = useContext(AuthContext);
 
   return (
     <section
@@ -101,13 +102,14 @@ const CourseDetails = () => {
         </div>
 
         <div className="mt-16">
-          <a
-            href="#enroll"
-            onClick={() => setIsEnrollModalOpen(true)}
+          <Link
+            to="/enroll"
+            // href="#enroll"
+            // onClick={() => setIsEnrollModalOpen(true)}
             className="transform rounded-xl bg-gradient-to-r from-cyan-500 to-teal-500 px-8 py-3 font-bold text-white shadow-lg transition-transform hover:scale-105 hover:from-teal-500 hover:to-cyan-600"
           >
             Join the Course Now
-          </a>
+          </Link>
         </div>
       </div>
     </section>

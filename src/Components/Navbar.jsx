@@ -4,7 +4,7 @@ import AuthContext from "../AuthContext";
 import Loader from "./Loader";
 
 const Navbar = () => {
-  const { logout, user, setIsModalOpen, loading, setIsEnrollModalOpen } =
+  const { logout, user, setIsModalOpen, loading } =
     useContext(AuthContext);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
@@ -145,12 +145,12 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <button
-              onClick={() => setIsEnrollModalOpen(true)}
+            <Link to="/enroll"
+              // onClick={() => setIsEnrollModalOpen(true)}
               className="block w-full rounded-lg bg-cyan-500 px-4 py-2 text-center text-white hover:bg-cyan-600"
             >
               Enroll
-            </button>
+            </Link>
           </div>
         )}
       </nav>

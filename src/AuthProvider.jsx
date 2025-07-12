@@ -19,7 +19,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isEnrollModalOpen, setIsEnrollModalOpen] = useState(false);
+  // const [isEnrollModalOpen, setIsEnrollModalOpen] = useState(false);
   const axiosPublic = useAxiosPublic();
 
   const googleSigIn = () => {
@@ -105,8 +105,8 @@ const AuthProvider = ({ children }) => {
     setIsModalOpen,
     passwordResetEmail,
     sendEmailVerification,
-    isEnrollModalOpen,
-    setIsEnrollModalOpen,
+    // isEnrollModalOpen,
+    // setIsEnrollModalOpen,
   };
 
   return (

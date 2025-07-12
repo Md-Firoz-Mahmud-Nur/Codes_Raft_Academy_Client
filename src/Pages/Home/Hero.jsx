@@ -9,11 +9,12 @@ import {
   FaReact,
   FaServer,
 } from "react-icons/fa";
-import AuthContext from "../../AuthContext";
-import { useContext } from "react";
+// import AuthContext from "../../AuthContext";
+// import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
-  const { setIsEnrollModalOpen } = useContext(AuthContext);
+  // const { setIsEnrollModalOpen } = useContext(AuthContext);
 
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gray-950 px-6 text-center text-white">
@@ -56,13 +57,14 @@ const Hero = () => {
           Node.js, MongoDB, Firebase & more.
         </p>
         <div>
-          <a
-            href="#enroll"
-            onClick={() => setIsEnrollModalOpen(true)}
+          <Link
+            to="/enroll"
+            // href="#enroll"
+            // onClick={() => setIsEnrollModalOpen(true)}
             className="mr-3 transform rounded-xl bg-cyan-500 px-8 py-4 font-bold text-white shadow-lg transition-transform hover:scale-105 hover:bg-cyan-600"
           >
             Start Learning
-          </a>
+          </Link>
           <a
             href="https://drive.google.com/file/d/1QegBV_9RZxF1aRCHoQgHnZovwWso-kxY/view"
             target="_blank"

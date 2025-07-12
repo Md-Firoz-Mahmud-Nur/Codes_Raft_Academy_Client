@@ -1,9 +1,11 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 
-import AuthContext from "../../AuthContext";
+import { Link } from "react-router-dom";
+
+// import AuthContext from "../../AuthContext";
 
 const CoursePlan = () => {
-  const { setIsEnrollModalOpen } = useContext(AuthContext);
+  // const { setIsEnrollModalOpen } = useContext(AuthContext);
 
   return (
     <section
@@ -61,14 +63,14 @@ const CoursePlan = () => {
             </li>
           </ul>
 
-          <a
-            href="#enroll"
-            onClick={() => setIsEnrollModalOpen(true)}
+          <Link to="/enroll"
+            // href="#enroll"
+            // onClick={() => setIsEnrollModalOpen(true)}
             className="focus:ring-opacity-50 mt-12 inline-block transform rounded-2xl bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 px-12 py-4 font-semibold text-white shadow-lg transition-transform hover:scale-105 hover:from-teal-500 hover:via-cyan-500 hover:to-blue-600 focus:ring-4 focus:ring-cyan-400 focus:outline-none"
             role="button"
           >
             Enroll Now
-          </a>
+          </Link>
         </div>
       </div>
 
