@@ -4,6 +4,7 @@ import Home from "./Pages/Home/Home";
 import Classes from "./Pages/Classes/Classes";
 import Profile from "./Pages/Profile/Profile";
 import EnrollPage from "./Pages/EnrollPage/EnrollPage";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/enroll",
-        element: <EnrollPage></EnrollPage>,
+        element: (
+          <PrivateRoute>
+            <EnrollPage></EnrollPage>,
+          </PrivateRoute>
+        ),
       },
     ],
   },
