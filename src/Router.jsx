@@ -3,6 +3,7 @@ import Root from "./Root";
 import Home from "./Pages/Home/Home";
 import Classes from "./Pages/Classes/Classes";
 import Profile from "./Pages/Profile/Profile";
+import EnrollPage from "./Pages/EnrollPage/EnrollPage";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile></Profile>,
+      },
+      {
+        path: "/enroll",
+        element: <EnrollPage></EnrollPage>,
       },
     ],
   },
