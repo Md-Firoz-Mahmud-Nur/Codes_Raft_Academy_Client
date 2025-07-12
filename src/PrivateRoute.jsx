@@ -1,12 +1,17 @@
 import { Navigate, useLocation } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import AuthContext from "./AuthContext";
-// import { AuthContext } from "./AuthProvider";
 
 const PrivateRoute = ({ children }) => {
   const location = useLocation();
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading, setIsModalOpen } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (!loading && !user) {
+      setIsModalOpen(true);
+    }
+  }, [loading, user, setIsModalOpen]);
 
   if (loading) {
     return (
