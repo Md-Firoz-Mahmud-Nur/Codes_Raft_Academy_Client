@@ -30,7 +30,7 @@ const router = createBrowserRouter([
         path: "/enroll",
         element: (
           <PrivateRoute>
-            <EnrollPage></EnrollPage>,
+            <EnrollPage></EnrollPage>
           </PrivateRoute>
         ),
       },

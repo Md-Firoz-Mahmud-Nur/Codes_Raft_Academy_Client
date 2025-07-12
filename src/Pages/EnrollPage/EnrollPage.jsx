@@ -102,7 +102,7 @@ const EnrollPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 p-4 text-white md:p-10">
+    <div className="flex min-h-screen items-center bg-gray-900 p-4 text-white md:p-10">
       <form
         className="mx-auto max-w-xl space-y-5 rounded-xl bg-gray-800 p-6 shadow-lg"
         onSubmit={handleFormSubmit}
