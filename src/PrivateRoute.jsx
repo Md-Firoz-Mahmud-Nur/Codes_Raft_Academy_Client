@@ -5,13 +5,16 @@ import AuthContext from "./AuthContext";
 
 const PrivateRoute = ({ children }) => {
   const location = useLocation();
-  const { user, loading, setIsModalOpen } = useContext(AuthContext);
+  const { user, loading, setIsModalOpen, setRedirectAfterLogin } =
+    useContext(AuthContext);
 
   useEffect(() => {
     if (!loading && !user) {
+      setRedirectAfterLogin(location.pathname);
+
       setIsModalOpen(true);
     }
-  }, [loading, user, setIsModalOpen]);
+  }, [loading, user, setIsModalOpen, setRedirectAfterLogin, location.pathname]);
 
   if (loading) {
     return (

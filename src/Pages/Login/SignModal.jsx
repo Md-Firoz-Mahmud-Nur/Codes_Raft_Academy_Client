@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { IoMdArrowBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const SignModal = () => {
   const axiosPublic = useAxiosPublic();
@@ -14,6 +15,7 @@ const SignModal = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loadingGoogle, setLoadingGoogle] = useState(false);
+  const navigate = useNavigate();
 
   const {
     createUser,
@@ -25,6 +27,8 @@ const SignModal = () => {
     passwordResetEmail,
     sendEmailVerification,
     logout,
+    redirectAfterLogin,
+    setRedirectAfterLogin,
   } = useContext(AuthContext);
 
   const toggleSignUpMode = () => {
@@ -58,6 +62,10 @@ const SignModal = () => {
         .then(() => {
           toast.success("Google Sign In successful.");
           setIsModalOpen(false);
+          if (redirectAfterLogin) {
+            navigate(redirectAfterLogin);
+            setRedirectAfterLogin(null);
+          }
         });
     });
   };
@@ -85,6 +93,11 @@ const SignModal = () => {
 
       toast.success("Sign In successful.");
       setIsModalOpen(false);
+
+      if (redirectAfterLogin) {
+        navigate(redirectAfterLogin);
+        setRedirectAfterLogin(null);
+      }
     } catch {
       toast.error("Sign In failed. Please check your Email and Password.");
       setLoading(false);

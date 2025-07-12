@@ -19,6 +19,8 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [redirectAfterLogin, setRedirectAfterLogin] = useState(null);
+
   // const [isEnrollModalOpen, setIsEnrollModalOpen] = useState(false);
   const axiosPublic = useAxiosPublic();
 
@@ -107,6 +109,8 @@ const AuthProvider = ({ children }) => {
     sendEmailVerification,
     // isEnrollModalOpen,
     // setIsEnrollModalOpen,
+    redirectAfterLogin,
+    setRedirectAfterLogin,
   };
 
   return (
